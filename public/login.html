@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registro</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="toggle-buttons">
+                <button id="login-tab" class="active">Login</button>
+                <button id="register-tab">Registro</button>
+            </div>
+
+            <form id="login-form" class="form active">
+                <h2>Iniciar Sesión</h2>
+                <div class="input-group">
+                    <input type="email" id="login-email" required placeholder="Correo Electronico">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-password" required placeholder="Contraseña">
+                </div>
+                <button type="submit" class="submit-button">Iniciar Sesión</button>
+                <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+            </form>
+
+            <form id="register-form" class="form">
+                <h2>Crear Cuenta</h2>
+                <div class="input-group">
+                    <input type="text" id="register-name" required placeholder="Nombre completo">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="register-email" required placeholder="Correo electrónico">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="register-password" required placeholder="Contraseña">
+                </div>
+                <button type="submit" class="submit-button">Registrarse</button>
+                <p class="link">¿Ya tienes una cuenta? <a href="#" id="show-login">Inicia Sesión</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
