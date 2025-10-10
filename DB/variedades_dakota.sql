@@ -2,11 +2,18 @@ DROP DATABASE variedades_dakota;
 CREATE DATABASE IF NOT EXISTS variedades_dakota;
 USE variedades_dakota;
 
+CREATE TABLE IF NOT EXISTS roles(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_rol VARCHAR(100)
+);
+
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_completo VARCHAR(100) NOT NULL,
     correo VARCHAR(100) UNIQUE NOT NULL,
-    contrasena VARCHAR(255) NOT NULL
+    contrasena VARCHAR(255) NOT NULL,
+    rol_id INT NOT NULL,
+    FOREIGN KEY (rol_id) REFERENCES roles(id)
 );
 
 CREATE TABLE categorias (
@@ -30,8 +37,9 @@ CREATE TABLE productos (
 -- Tabla de clientes
 CREATE TABLE clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100) NOT NULL, 
     telefono VARCHAR(20) NOT NULL,
+    coreo VARCHAR(100) NOT NULL,
     direccion VARCHAR(150),
     saldo DECIMAL(10,2) DEFAULT 0
 );
@@ -90,6 +98,13 @@ CREATE TABLE pedidos_productos (
     FOREIGN KEY (id_producto) REFERENCES productos(id),
     FOREIGN KEY (id_pedido) REFERENCES pedidos(id)
 );
+
+INSERT INTO roles (nombre_rol) VALUES 
+('Administador'),
+('Empleado');
+
+INSERT INTO usuarios(nombre_completo, correo, contrasena, rol_id) VALUES
+('Admin', 'admin@admin.com', '$2a$10$.qUBiiHheGusLqILTJjlt.52EnLOc4tj4UXpSiC2lTWuxrzGXGC96', 1); -- pass 1234567890
 
 INSERT INTO metodo_pago(metodo_pago) VALUES
 ('Efectivo'),
