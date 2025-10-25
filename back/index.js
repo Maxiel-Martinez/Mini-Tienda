@@ -18,6 +18,6 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users',userRouter)
-app.use("/clientes", clienteRoutes);
+app.use("/api/clientes", clienteRoutes);
 
 app.listen(PORT, () => console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`));
