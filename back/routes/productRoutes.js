@@ -10,3 +10,4 @@ productRouter.get("/", ProductController.getAllProducts);
 productRouter.get("/:product_id", ProductController.getProductById);
 productRouter.get("/category/:category_id", ProductController.getProductsByCategory);
 productRouter.post("/", upload.single('image'), ProductController.createProduct);
+productRouter.put("/:id", ProductController.updateBasicProduct);

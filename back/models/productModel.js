@@ -65,4 +65,27 @@ export class Product {
       return error;
     }
   }
+
+  static async updateBasicProduct(id, data){
+    try {
+      const { nombre, descripcion, categoria_id, precio, stock } = data;
+      await db.query(
+        `UPDATE productos
+        SET nombre = ?, descripcion = ?, categoria_id = ?, precio = ?, stock = ?
+        WHERE id = ?`,
+        [nombre, descripcion, categoria_id, precio, stock, id]
+      );
+      const [[updatedProduct]] = await db.query(
+        `SELECT id, nombre, descripcion, categoria_id, precio, stock, imagen_url
+        FROM productos
+        WHERE id = ?`, [id]);
+
+        if (!updatedProduct) {
+          throw new Error('Producto no encontrado después de la actualización');
+        }
+      return updatedProduct;
+    } catch (error) {
+      return error;
+    }
+  }
 }

@@ -43,8 +43,16 @@ export class ProductController {
       }
       res.status(201).json(newProduct);
     } catch (error) {
-      await cloudinary.uploader.destroy(uploadedImage.public_id);
-      return res.status(500).json({ error: 'Error Creating the product' });
+
+  static async updateBasicProduct(req, res) {
+    const {id} =req.params
+    const productData = req.body;
+    const updatedProduct =  await Product.updateBasicProduct(id, productData);
+    if (updatedProduct instanceof Error) {
+      return res.status(500).json({ error: updatedProduct.message });
+    }
+    res.status(200).json({updatedProduct});
+  }
     }
   }
 }
