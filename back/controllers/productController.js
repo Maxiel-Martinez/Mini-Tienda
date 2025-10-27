@@ -53,6 +53,35 @@ export class ProductController {
     }
     res.status(200).json({updatedProduct});
   }
+
+  static async updateProductImage(req, res){
+    const {id} =req.params
+    try {
+      const data = {}
+      let uploadedImage = null
+      if (req.file){
+        const publicIdFromDB = await Product.getImagePublicId(id);
+        if (publicIdFromDB instanceof Error) {
+          throw publicIdFromDB;
+        }
+        await deleteImageFromCloudinary(publicIdFromDB);
+        const imageUploaded = await uploadImageToCloudinary(req.file)
+        if (imageUploaded instanceof Error) {
+          throw imageUploaded;
+        }
+
+        uploadedImage = {public_id: imageUploaded?.publicId, secure_url: imageUploaded?.url};
+        data.imagen_url = imageUploaded?.url;
+        data.imagen_public_id = imageUploaded?.publicId;
+      }
+      const updatedProduct =  await Product.updateProductImage(id, data);
+      if (updatedProduct instanceof Error) {
+        throw updatedProduct;
+      }
+      res.status(200).json({updatedProduct});
+    } catch (error) {
+      const deletedResult = await deleteImageFromCloudinary(uploadedImage.public_id);
+      return res.status(500).json({ error: 'Error updating the image', deleteStatus: deletedResult });
     }
   }
 }

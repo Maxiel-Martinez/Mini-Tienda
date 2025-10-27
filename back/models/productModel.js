@@ -88,4 +88,39 @@ export class Product {
       return error;
     }
   }
+
+  static async updateProductImage(id, data){
+    try {
+      const { imagen_url, imagen_public_id } = data;
+      await db.query(
+        `UPDATE productos
+        SET imagen_url = ?, imagen_public_id = ?
+        WHERE id = ?`,
+        [imagen_url, imagen_public_id, id]
+      );
+      const [[updatedProduct]] = await db.query(
+        `SELECT id, nombre, descripcion, categoria_id, precio, stock, imagen_url
+        FROM productos
+        WHERE id = ?`, [id]);
+      if (!updatedProduct) {
+        throw new Error('Producto no encontrado después de la actualización de imagen');
+      }
+      return updatedProduct
+    } catch (error) {
+      return error
+    }
+  }
+
+  static async getImagePublicId(id){
+    try {
+      const [[product]] = await db.query(
+        `SELECT imagen_public_id FROM productos WHERE id = ?`, [id]);
+      if (!product) {
+        throw new Error('Producto no encontrado');
+      }
+      return product.imagen_public_id;
+    } catch (error) {
+      return error;
+    }
+  }
 }
