@@ -1,5 +1,5 @@
-import cloudinary from "../config/cloudinary.js";
 import { Product } from "../models/productModel.js";
+import { deleteImageFromCloudinary, uploadImageToCloudinary } from "../util/images.js";
 
 export class ProductController {
   static async getAllProducts(req, res) {
@@ -30,12 +30,14 @@ export class ProductController {
     try {
       const productData = req.body;
       if (req.file){
-        const base64Image = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`
-        const uploadImage = await cloudinary.uploader.upload(base64Image, { folder: 'products' });
+        const imageUploaded = await uploadImageToCloudinary(req.file)
+        if (imageUploaded instanceof Error) {
+          throw imageUploaded;
+        }
 
-        uploadedImage = uploadImage;
-        productData.imagen_url = uploadImage.secure_url;
-        productData.imagen_public_id = uploadImage.public_id;
+        uploadedImage = {public_id: imageUploaded?.publicId, secure_url: imageUploaded?.url};
+        productData.imagen_url = imageUploaded?.url;
+        productData.imagen_public_id = imageUploaded?.publicId;
       }
       const newProduct =  await Product.createProduct(productData);
       if (newProduct instanceof Error) {
@@ -43,6 +45,10 @@ export class ProductController {
       }
       res.status(201).json(newProduct);
     } catch (error) {
+      const deletedResult = await deleteImageFromCloudinary(uploadedImage.public_id);
+      return res.status(500).json({ error: 'Error Creating the product', deleteStatus: deletedResult });
+    }
+  }
 
   static async updateBasicProduct(req, res) {
     const {id} =req.params
