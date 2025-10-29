@@ -1,8 +1,9 @@
 import express, { json, urlencoded } from "express";
 import { loadEnvFile } from 'node:process';
+import { categoryRouter } from "./routes/categoryRoutes.js";
 import { userRouter } from "./routes/userRouter.js";
+import { productRouter } from "./routes/productRoutes.js";
 import clienteRoutes from "./routes/clienteRoutes.js";
-
 
 loadEnvFile();
 
@@ -18,6 +19,8 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users',userRouter)
+app.use('/api/categories',categoryRouter)
+app.use('/api/products',productRouter)
 app.use("/api/clientes", clienteRoutes);
 
 app.listen(PORT, () => console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`));
