@@ -6,7 +6,7 @@
  
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #87CEFA 0%, #1E90FF 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +43,7 @@ body::before {
 .store-logo {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #87CEFA, #1E90FF);
     border-radius: 50%;
     margin: 0 auto 20px;
     display: flex;
@@ -63,7 +63,7 @@ body::before {
     font-weight: 700;
     color: #333;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #1E90FF, #00008B);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -92,7 +92,7 @@ body::before {
     left: 4px;
     width: calc(50% - 4px);
     height: calc(100% - 8px);
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #1E90FF, #00008B);
     border-radius: 8px;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
@@ -189,7 +189,7 @@ body::before {
     padding: 15px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg,  #1E90FF, #00008B);
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -244,7 +244,7 @@ body::before {
     height: 2px;
     bottom: -2px;
     left: 50%;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg,  #1E90FF, #00008B);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }

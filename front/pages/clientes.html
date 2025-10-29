@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/clientes.css">
+    <title>Clientes - Variedades Dakota</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Variedades Dakota</div>
+        <div class="logo-subtitle">Sistema de Gestión</div>
+        <div class="menu">
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <rect x="3" y="3" width="6" height="6" rx="1"/>
+                    <rect x="11" y="3" width="6" height="6" rx="1"/>
+                    <rect x="3" y="11" width="6" height="6" rx="1"/>
+                    <rect x="11" y="11" width="6" height="6" rx="1"/>
+                </svg>
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 3h14a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1zm1 2v10h12V5H4z"/>
+                </svg>
+                <span>Ventas</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 00-1 1v1H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1h-4V3a1 1 0 00-1-1H9z"/>
+                </svg>
+                <span>Pedidos</span>
+            </div>
+            <div class="menu-item active">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                </svg>
+                <span>Clientes</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"/>
+                </svg>
+                <span>Productos</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z"/>
+                </svg>
+                <span>Proveedores</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="header-left">
+                <h1>Clientes</h1>
+                <p>Gestiona tu base de clientes y sus deudas</p>
+            </div>
+            <div class="header-right">
+                <div class="notification-badge">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+                    </svg>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-avatar">A</div>
+                <span style="color: #333; font-weight: 500;">Administrador</span>
+                <button class="btn-nuevo">
+                    <span style="font-size: 18px;">+</span>
+                    Nuevo Cliente
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Clientes</h3>
+                <div class="stat-value">4</div>
+                <div class="stat-subtitle">3 activos</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Clientes con Deuda</h3>
+                <div class="stat-value">3</div>
+                <div class="stat-subtitle">Pendientes de pago</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Deuda Total</h3>
+                <div class="stat-value">$255,000</div>
+                <div class="stat-subtitle">Por cobrar</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Compras del Mes</h3>
+                <div class="stat-value">$1,730,000</div>
+                <div class="stat-subtitle">Enero 2024</div>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2>Lista de Clientes</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Contacto</th>
+                            <th>Dirección</th>
+                            <th>Deuda</th>
+                            <th>Última Compra</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="cliente-info">
+                                    <span class="cliente-nombre">Ana María González</span>
+                                    <span class="cliente-email">ana.gonzalez@email.com</span>
+                                </div>
+                            </td>
+                            <td>300-123-4567</td>
+                            <td>Calle 45 #12-34, Bogotá</td>
+                            <td><span class="deuda-pendiente">$85,000</span></td>
+                            <td>2024-01-15</td>
+                            <td>
+                                <div class="acciones">
+                                    <button class="btn-editar">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                        </svg>
+                                        Editar
+                                    </button>
+                                    <button class="btn-deuda">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
+                                        </svg>
+                                        Deuda
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="cliente-info">
+                                    <span class="cliente-nombre">Carlos Rodríguez</span>
+                                    <span class="cliente-email">carlos.rodriguez@email.com</span>
+                                </div>
+                            </td>
+                            <td>301-987-6543</td>
+                            <td>Carrera 20 #8-15, Medellín</td>
+                            <td><span class="deuda-cero">$0</span></td>
+                            <td>2024-01-14</td>
+                            <td>
+                                <div class="acciones">
+                                    <button class="btn-editar">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                        </svg>
+                                        Editar
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="cliente-info">
+                                    <span class="cliente-nombre">María Fernanda López</span>
+                                    <span class="cliente-email">maria.lopez@email.com</span>
+                                </div>
+                            </td>
+                            <td>302-456-7890</td>
+                            <td>Avenida 30 #25-67, Cali</td>
+                            <td><span class="deuda-pendiente">$125,000</span></td>
+                            <td>2024-01-10</td>
+                            <td>
+                                <div class="acciones">
+                                    <button class="btn-editar">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                        </svg>
+                                        Editar
+                                    </button>
+                                    <button class="btn-deuda">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
+                                        </svg>
+                                        Deuda
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="cliente-info">
+                                    <span class="cliente-nombre">José Antonio Pérez</span>
+                                    <span class="cliente-email">jose.perez@email.com</span>
+                                </div>
+                            </td>
+                            <td>303-789-0123</td>
+                            <td>Calle 15 #40-22, Barranquilla</td>
+                            <td><span class="deuda-pendiente">$45,000</span></td>
+                            <td>2024-01-08</td>
+                            <td>
+                                <div class="acciones">
+                                    <button class="btn-editar">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                        </svg>
+                                        Editar
+                                    </button>
+                                    <button class="btn-deuda">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
+                                        </svg>
+                                        Deuda
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

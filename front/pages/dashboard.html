@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Variedades Dakota - Dashboard</title>
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Variedades Dakota</div>
+        <div class="logo-subtitle">Sistema de Gestión</div>
+        <div class="menu">
+            <div class="menu-item active">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <rect x="3" y="3" width="6" height="6" rx="1"/>
+                    <rect x="11" y="3" width="6" height="6" rx="1"/>
+                    <rect x="3" y="11" width="6" height="6" rx="1"/>
+                    <rect x="11" y="11" width="6" height="6" rx="1"/>
+                </svg>
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 3h14a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1zm1 2v10h12V5H4z"/>
+                </svg>
+                <span>Ventas</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 00-1 1v1H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1h-4V3a1 1 0 00-1-1H9z"/>
+                </svg>
+                <span>Pedidos</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                </svg>
+                <span>Clientes</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"/>
+                </svg>
+                <span>Productos</span>
+            </div>
+            <div class="menu-item">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z"/>
+                </svg>
+                <span>Proveedores</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Panel de Control</h1>
+            <div class="user-section">
+                <div class="notification-badge">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+                    </svg>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-avatar">A</div>
+                <span style="color: #333; font-weight: 500;">Administrador</span>
+            </div>
+        </div>
+
+        <div class="dashboard-title">
+            <h2>Dashboard</h2>
+            <p>Resumen general del negocio</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">Ventas del Mes</span>
+                    <div class="stat-icon dark-blue">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value">$67,000</div>
+                <div class="stat-change positive">
+                    <span>↑ +12%</span>
+                    <span>vs mes anterior</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">Clientes con Deuda</span>
+                    <div class="stat-icon medium-blue">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value">24</div>
+                <div class="stat-change negative">
+                    <span>↓ -5%</span>
+                    <span>vs mes anterior</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">Pedidos Pendientes</span>
+                    <div class="stat-icon light-blue">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 00-1 1v1H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1h-4V3a1 1 0 00-1-1H9z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value">8</div>
+                <div class="stat-change positive">
+                    <span>↑ +3%</span>
+                    <span>vs mes anterior</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">Productos Bajo Stock</span>
+                    <div class="stat-icon medium-blue">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-value">12</div>
+                <div class="stat-change positive">
+                    <span>↑ +2%</span>
+                    <span>vs mes anterior</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <div class="chart-title">Ventas y Pedidos - Últimos 6 Meses</div>
+                <canvas id="lineChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">Métodos de Pago</div>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+     <script src="../js/scriptD.js"></script>
+</body>
+</html>
