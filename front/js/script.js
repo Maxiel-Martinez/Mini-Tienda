@@ -6,30 +6,30 @@ const showLoginLink = document.getElementById('show-login');
 const toggleContainer = document.getElementById('toggle-container');
 document.addEventListener('DOMContentLoaded', function () {
     // Función para mostrar el formulario de Login
-    function showLoginForm() {
-        loginForm.classList.add('active');
-        registerForm.classList.remove('active');
-        loginTab.classList.add('active');
-        registerTab.classList.remove('active');
-        toggleContainer.classList.remove('register-active');
-    }
+    // function showLoginForm() {
+    //     loginForm.classList.add('active');
+    //     registerForm.classList.remove('active');
+    //     loginTab.classList.add('active');
+    //     registerTab.classList.remove('active');
+    //     toggleContainer.classList.remove('register-active');
+    // }
 
     // Función para mostrar el formulario de Registro
-    function showRegisterForm() {
-        registerForm.classList.add('active');
-        loginForm.classList.remove('active');
-        registerTab.classList.add('active');
-        loginTab.classList.remove('active');
-        toggleContainer.classList.add('register-active');
-    }
+    // function showRegisterForm() {
+    //     registerForm.classList.add('active');
+    //     loginForm.classList.remove('active');
+    //     registerTab.classList.add('active');
+    //     loginTab.classList.remove('active');
+    //     toggleContainer.classList.add('register-active');
+    // }
 
     // Eventos de clic para las pestañas
-    loginTab.addEventListener('click', showLoginForm);
-    registerTab.addEventListener('click', showRegisterForm);
-    showLoginLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        showLoginForm();
-    });
+    // loginTab.addEventListener('click', showLoginForm);
+    // registerTab.addEventListener('click', showRegisterForm);
+    // showLoginLink.addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     showLoginForm();
+    // });
 
     // Efecto de enfoque en inputs
     const inputs = document.querySelectorAll('input');
@@ -63,13 +63,14 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (dataBack.succes) {
       alert("Bienvenido " + dataBack.user.nombre_completo + " 🎉");
+      localStorage.setItem('user', JSON.stringify(dataBack.user))
       // Aquí podrías redirigir a otra página:
       window.location.href = "dashboard.html";
     } else {
       alert(dataBack.msg || "Error en login ❌");
     }
   } catch (err) {
-    // alert("Error al iniciar sesión ❌");
+    alert("Error al iniciar sesión ❌");
     console.error(err);
   }
 });
