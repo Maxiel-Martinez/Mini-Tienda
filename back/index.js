@@ -4,6 +4,7 @@ import { categoryRouter } from "./routes/categoryRoutes.js";
 import { userRouter } from "./routes/userRouter.js";
 import { productRouter } from "./routes/productRoutes.js";
 import clienteRoutes from "./routes/clienteRoutes.js";
+import cors from "cors"
 
 loadEnvFile();
 
@@ -13,6 +14,7 @@ const PORT = process.env.PORT ?? 3000;
 // Middleware para JSON
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(cors())
 
 app.get("/", (req, res) => {
   res.json("API funcionando 🚀");
