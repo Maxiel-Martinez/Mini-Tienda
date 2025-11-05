@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ventas.css">
+    <title>Dashboard de Ventas</title>
+  
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Variedades Dakota</h1>
+            <p>Sistema de Gestión</p>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+        </div>
+        <div class="menu-item active">
+            <span class="menu-icon">🛒</span>
+            <span>Ventas</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📋</span>
+            <span>Pedidos</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span>Clientes</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📦</span>
+            <span>Productos</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">🏢</span>
+            <span>Proveedores</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="header-left">
+                <h1>Ventas</h1>
+                <p>Registra ventas de productos con diferentes métodos de pago</p>
+            </div>
+            <div class="header-right">
+                <button class="btn-nuevo">
+                    <span style="font-size: 18px;">+</span>
+                    Nueva Venta
+                </button>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">Ventas Hoy</div>
+                <div class="card-amount">$125,000</div>
+                <div class="card-subtitle">15 transacciones</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Efectivo</div>
+                <div class="card-amount">$45,000</div>
+                <div class="card-subtitle">36% del total</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Transferencias</div>
+                <div class="card-amount">$35,000</div>
+                <div class="card-subtitle">28% del total</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Créditos Pendientes</div>
+                <div class="card-amount">$18,000</div>
+                <div class="card-subtitle">36% del total</div>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2>Historial de Ventas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Total</th>
+                        <th>Método</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <td class="amount-green">$45,000</td>
+                        <td><span class="badge badge-efectivo">Efectivo</span></td>
+                        <td>2024-01-20</td>
+                        <td><span class="badge badge-completado">Completado</span></td>
+                        <td><button class="btn-ver">👁 Ver</button></td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td class="amount-green">$32,000</td>
+                        <td><span class="badge badge-transferencia">Transferencia</span></td>
+                        <td>2024-01-20</td>
+                        <td><span class="badge badge-completado">Completado</span></td>
+                        <td><button class="btn-ver">👁 Ver</button></td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td class="amount-green">$18,000</td>
+                        <td><span class="badge badge-efectivo">Efectivo</span></td>
+                        <td>2024-01-19</td>
+                        <td><span class="badge badge-pendiente">Pendiente</span></td>
+                        <td><button class="btn-ver">👁 Ver</button></td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td class="amount-green">$25,000</td>
+                        <td><span class="badge badge-transferencia">Transferencia</span></td>
+                        <td>2024-01-19</td>
+                        <td><span class="badge badge-completado">Completado</span></td>
+                        <td><button class="btn-ver">👁 Ver</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
