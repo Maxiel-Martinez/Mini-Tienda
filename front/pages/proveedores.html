@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores - Variedades Dakota</title>
+    <link rel="stylesheet" href="../css/proveedores.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Variedades Dakota</h1>
+            <p>Sistema de Gestión</p>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">🛒</span>
+            <span>Ventas</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📋</span>
+            <span>Pedidos</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span>Clientes</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📦</span>
+            <span>Productos</span>
+        </div>
+        <div class="menu-item active">
+            <span class="menu-icon">🏢</span>
+            <span>Proveedores</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Proveedores</h1>
+                <p>Gestiona la información de tus proveedores</p>
+            </div>
+            <div class="header-right">
+                <button class="btn-nuevo">
+                    <span style="font-size: 18px;">+</span>
+                    Nuevo Proveedor
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-title">Total Proveedores</div>
+                <div class="stat-card-value">3</div>
+                <div class="stat-card-subtitle">Registrados</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-title">Proveedores Activos</div>
+                <div class="stat-card-value">2</div>
+                <div class="stat-card-subtitle">En operación</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-title">Productos Suministrados</div>
+                <div class="stat-card-value">8</div>
+                <div class="stat-card-subtitle">Diferentes productos</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-title">Pedidos Este Mes</div>
+                <div class="stat-card-value">12</div>
+                <div class="stat-card-subtitle">Órdenes realizadas</div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-section">
+            <h2>Lista de Proveedores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Proveedor</th>
+                        <th>Contacto</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Productos</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="proveedor-info">
+                                <span class="proveedor-nombre">Distribuidora Central</span>
+                                <span class="proveedor-direccion">Calle 123 #45-67, Bogotá</span>
+                            </div>
+                        </td>
+                        <td>Juan Pérez</td>
+                        <td>+57 300 123 4567</td>
+                        <td>juan@distribuidora.com</td>
+                        <td><span class="badge badge-productos">3 productos</span></td>
+                        <td><span class="badge badge-activo">Activo</span></td>
+                        <td>
+                            <div class="acciones">
+                                <button class="btn-accion">👁 Ver</button>
+                                <button class="btn-accion">✏️ Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="proveedor-info">
+                                <span class="proveedor-nombre">Proveedores del Norte</span>
+                                <span class="proveedor-direccion">Carrera 78 #12-34, Medellín</span>
+                            </div>
+                        </td>
+                        <td>María García</td>
+                        <td>+57 301 987 6543</td>
+                        <td>maria@norte.com</td>
+                        <td><span class="badge badge-productos">2 productos</span></td>
+                        <td><span class="badge badge-activo">Activo</span></td>
+                        <td>
+                            <div class="acciones">
+                                <button class="btn-accion">👁 Ver</button>
+                                <button class="btn-accion">✏️ Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="proveedor-info">
+                                <span class="proveedor-nombre">Suministros del Valle</span>
+                                <span class="proveedor-direccion">Avenida 3 #23-45, Cali</span>
+                            </div>
+                        </td>
+                        <td>Carlos López</td>
+                        <td>+57 302 456 7890</td>
+                        <td>carlos@valle.com</td>
+                        <td><span class="badge badge-productos">3 productos</span></td>
+                        <td><span class="badge badge-inactivo">Inactivo</span></td>
+                        <td>
+                            <div class="acciones">
+                                <button class="btn-accion">👁 Ver</button>
+                                <button class="btn-accion">✏️ Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

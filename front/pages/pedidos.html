@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Variedades Dakota</title>
+    <link rel="stylesheet" href="../css/pedidos.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Variedades Dakota</h1>
+            <p>Sistema de Gestión</p>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">🛒</span>
+            <span>Ventas</span>
+        </div>
+        <div class="menu-item active">
+            <span class="menu-icon">📋</span>
+            <span>Pedidos</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span>Clientes</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">📦</span>
+            <span>Productos</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">🏢</span>
+            <span>Proveedores</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Pedidos a Proveedores</h1>
+                <p>Gestiona las órdenes de compra a tus proveedores</p>
+            </div>
+            <div class="header-right">
+                <button class="btn-nuevo">
+                    <span style="font-size: 18px;">+</span>
+                    Nuevo Pedido
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-title">Pedidos Pendientes</div>
+                <div class="stat-card-value">5</div>
+                <div class="stat-card-subtitle">Por recibir</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-title">En Tránsito</div>
+                <div class="stat-card-value">3</div>
+                <div class="stat-card-subtitle">Enviados</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-title">Entregados Hoy</div>
+                <div class="stat-card-value">2</div>
+                <div class="stat-card-subtitle">Recibidos</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-title">Total Mes</div>
+                <div class="stat-card-value">$2,450,000</div>
+                <div class="stat-card-subtitle">En pedidos</div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-section">
+            <h2>Historial de Pedidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Proveedor</th>
+                        <th>Fecha Pedido</th>
+                        <th>Fecha Entrega</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>Distribuidora Central</td>
+                        <td>2024-01-15</td>
+                        <td>2024-01-20</td>
+                        <td>8 productos</td>
+                        <td class="amount-green">$450,000</td>
+                        <td><span class="badge badge-pendiente">Pendiente</span></td>
+                        <td>
+                            <div class="acciones">
+                                <button class="btn-accion">👁 Ver</button>
+                                <button class="btn-accion btn-recibir">✓ Recibir</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Mayorista del Norte</td>
+                        <td>2024-01-14</td>
+                        <td>2024-01-18</td>
+                        <td>5 productos</td>
+                        <td class="amount-green">$320,000</td>
+                        <td><span class="badge badge-entregado">Entregado</span></td>
+                        <td>
+                            <div class="acciones">
+                                <button class="btn-accion">👁 Ver</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#003</td>
+                        <td>Proveedora Sur</td>
+                        <td>2024-01-13</td>
+                        <td>2024-01-19</td>
+                        <td>3 productos</td>
+                        <td class="amount-green">$180,000</td>
+                        <td><span class="badge badge-transito">En Tránsito</span></td>
+                        <td>
+                            <div class="acciones">
+                                <button class="btn-accion">👁 Ver</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
