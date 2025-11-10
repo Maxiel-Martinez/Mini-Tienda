@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/clientes.css">
     <title>Clientes - Variedades Dakota</title>
+    <link rel="stylesheet" href="../css/clientes.css">
 </head>
 <body>
-   <div class="sidebar">
+    <div class="sidebar">
         <div class="sidebar-header">
             <h1>Variedades Dakota</h1>
             <p>Sistema de Gestión</p>
@@ -16,7 +16,7 @@
             <span class="menu-icon">📊</span>
             <span>Dashboard</span>
         </div>
-        <div class="menu-item active">
+        <div class="menu-item">
             <span class="menu-icon">🛒</span>
             <span>Ventas</span>
         </div>
@@ -24,7 +24,7 @@
             <span class="menu-icon">📋</span>
             <span>Pedidos</span>
         </div>
-        <div class="menu-item">
+        <div class="menu-item active">
             <span class="menu-icon">👥</span>
             <span>Clientes</span>
         </div>
@@ -37,6 +37,7 @@
             <span>Proveedores</span>
         </div>
     </div>
+
     <div class="main-content">
         <div class="header">
             <div class="header-left">
@@ -44,7 +45,7 @@
                 <p>Gestiona tu base de clientes y sus deudas</p>
             </div>
             <div class="header-right">
-                <button class="btn-nuevo">
+                <button class="btn-nuevo" onclick="abrirModal()">
                     <span style="font-size: 18px;">+</span>
                     Nuevo Cliente
                 </button>
@@ -54,19 +55,19 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Total Clientes</h3>
-                <div class="stat-value">4</div>
+                <div class="stat-value" id="totalClientes">4</div>
                 <div class="stat-subtitle">3 activos</div>
             </div>
 
             <div class="stat-card">
                 <h3>Clientes con Deuda</h3>
-                <div class="stat-value">3</div>
+                <div class="stat-value" id="clientesConDeuda">3</div>
                 <div class="stat-subtitle">Pendientes de pago</div>
             </div>
 
             <div class="stat-card">
                 <h3>Deuda Total</h3>
-                <div class="stat-value">$255,000</div>
+                <div class="stat-value" id="deudaTotal">$255,000</div>
                 <div class="stat-subtitle">Por cobrar</div>
             </div>
 
@@ -91,123 +92,54 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="cliente-info">
-                                    <span class="cliente-nombre">Ana María González</span>
-                                    <span class="cliente-email">ana.gonzalez@email.com</span>
-                                </div>
-                            </td>
-                            <td>300-123-4567</td>
-                            <td>Calle 45 #12-34, Bogotá</td>
-                            <td><span class="deuda-pendiente">$85,000</span></td>
-                            <td>2024-01-15</td>
-                            <td>
-                                <div class="acciones">
-                                    <button class="btn-editar">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                                        </svg>
-                                        Editar
-                                    </button>
-                                    <button class="btn-deuda">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
-                                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
-                                        </svg>
-                                        Deuda
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="cliente-info">
-                                    <span class="cliente-nombre">Carlos Rodríguez</span>
-                                    <span class="cliente-email">carlos.rodriguez@email.com</span>
-                                </div>
-                            </td>
-                            <td>301-987-6543</td>
-                            <td>Carrera 20 #8-15, Medellín</td>
-                            <td><span class="deuda-cero">$0</span></td>
-                            <td>2024-01-14</td>
-                            <td>
-                                <div class="acciones">
-                                    <button class="btn-editar">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                                        </svg>
-                                        Editar
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="cliente-info">
-                                    <span class="cliente-nombre">María Fernanda López</span>
-                                    <span class="cliente-email">maria.lopez@email.com</span>
-                                </div>
-                            </td>
-                            <td>302-456-7890</td>
-                            <td>Avenida 30 #25-67, Cali</td>
-                            <td><span class="deuda-pendiente">$125,000</span></td>
-                            <td>2024-01-10</td>
-                            <td>
-                                <div class="acciones">
-                                    <button class="btn-editar">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                                        </svg>
-                                        Editar
-                                    </button>
-                                    <button class="btn-deuda">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
-                                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
-                                        </svg>
-                                        Deuda
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="cliente-info">
-                                    <span class="cliente-nombre">José Antonio Pérez</span>
-                                    <span class="cliente-email">jose.perez@email.com</span>
-                                </div>
-                            </td>
-                            <td>303-789-0123</td>
-                            <td>Calle 15 #40-22, Barranquilla</td>
-                            <td><span class="deuda-pendiente">$45,000</span></td>
-                            <td>2024-01-08</td>
-                            <td>
-                                <div class="acciones">
-                                    <button class="btn-editar">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                                        </svg>
-                                        Editar
-                                    </button>
-                                    <button class="btn-deuda">
-                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
-                                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
-                                        </svg>
-                                        Deuda
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="tablaClientes">
+                        <!-- Se carga dinámicamente -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    <!-- Modal Nuevo/Editar Cliente -->
+    <div class="modal" id="modalCliente">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitulo">Nuevo Cliente</h2>
+                <button class="btn-close" onclick="cerrarModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formCliente">
+                    <input type="hidden" id="clienteId">
+                    
+                    <div class="form-group">
+                        <label for="nombreCompleto">Nombre Completo</label>
+                        <input type="text" id="nombreCompleto" placeholder="Nombre del cliente" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" placeholder="300-123-4567" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="cliente@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <textarea id="direccion" placeholder="Dirección completa del cliente"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                <button class="btn-guardar" id="btnGuardar" onclick="guardarCliente()">Crear Cliente</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/clientes.js"></script>
 </body>
 </html>
