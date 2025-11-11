@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Inventario</title>
+  <link rel="stylesheet" href="../css/productos.css">
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo">Variedades Dakota</div>
+    <div class="logo-subtitle">Sistema de Gestión</div>
+    <div class="menu">
+      <div class="menu-item">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+          <rect x="3" y="3" width="6" height="6" rx="1" />
+          <rect x="11" y="3" width="6" height="6" rx="1" />
+          <rect x="3" y="11" width="6" height="6" rx="1" />
+          <rect x="11" y="11" width="6" height="6" rx="1" />
+        </svg>
+        <span>Dashboard</span>
+      </div>
+      <div class="menu-item">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+          <path d="M3 3h14a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1zm1 2v10h12V5H4z" />
+        </svg>
+        <span>Ventas</span>
+      </div>
+      <div class="menu-item">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M9 2a1 1 0 00-1 1v1H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1h-4V3a1 1 0 00-1-1H9z" />
+        </svg>
+        <span>Pedidos</span>
+      </div>
+      <div class="menu-item">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+        </svg>
+        <span>Clientes</span>
+      </div>
+      <div class="menu-item active">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+          <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
+        </svg>
+        <span>Productos</span>
+      </div>
+      <div class="menu-item">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z" />
+        </svg>
+        <span>Proveedores</span>
+      </div>
+    </div>
+  </div>
+  <div class="main-content">
+
+    <div class="header">
+      <div class="header-title">
+        <h1>Productos</h1>
+        <p>Gestiona tu inventario y catálogo de productos</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Productos</h3>
+        <div id="total_productos" class="stat-number blue">0</div>
+        <div class="stat-label">En catálogo</div>
+      </div>
+      <div class="stat-card">
+        <h3>Bajo Stock</h3>
+        <div id="bajo_stock" class="stat-number orange">0</div>
+        <div class="stat-label">Requieren reposición</div>
+      </div>
+      <div class="stat-card">
+        <h3>Agotados</h3>
+        <div id="agotados" class="stat-number red">0</div>
+        <div class="stat-label">Sin existencias</div>
+      </div>
+      <div class="stat-card">
+        <h3>Valor Inventario</h3>
+        <div id="valor_inventario" class="stat-number green">$0</div>
+        <div class="stat-label">Total en stock</div>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="filter-tabs">
+        <button class="filter-tab active">Todos (24)</button>
+        <button class="filter-tab">Categoría 1 (8)</button>
+        <button class="filter-tab">Categoría 2 (6)</button>
+        <button class="filter-tab">Categoría 3 (10)</button>
+      </div>
+      <!-- <div class="view-toggle">
+        <button class="view-btn active">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <rect x="1" y="1" width="6" height="6" rx="1" />
+            <rect x="9" y="1" width="6" height="6" rx="1" />
+            <rect x="1" y="9" width="6" height="6" rx="1" />
+            <rect x="9" y="9" width="6" height="6" rx="1" />
+          </svg>
+        </button>
+        <button class="view-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <rect x="1" y="2" width="14" height="2" rx="1" />
+            <rect x="1" y="7" width="14" height="2" rx="1" />
+            <rect x="1" y="12" width="14" height="2" rx="1" />
+          </svg>
+        </button>
+      </div> -->
+    </div>
+
+    <div id="products-grid" class="products-grid"></div>
+  </div>
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <!-- Header del modal -->
+      <div class="modal-header">
+        <h2>Editar Producto</h2>
+        <button id="close-btn" class="close-btn">&times;</button>
+      </div>
+
+      <!-- Contenido del modal -->
+      <div class="modal-body">
+        <form class="product-form">
+          <!-- Fila 1: Nombre y Categoría -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre del Producto</label>
+              <input type="text" id="nombre" placeholder="Nombre del producto">
+            </div>
+            <div class="form-group">
+              <label for="categoria">Categoría</label>
+              <select id="categoria">
+                <option value="">Seleccionar categoría</option>
+                <option value="1">Categoría 1</option>
+                <option value="2">Categoría 2</option>
+                <option value="3">Categoría 3</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Fila 2: Precio, Costo y Stock Inicial -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="precio">Precio de Venta</label>
+              <input type="number" id="precio" placeholder="0">
+            </div>
+            <div class="form-group">
+              <label for="stock-inicial">Stock</label>
+              <input type="number" id="stock-inicial" placeholder="0">
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div class="form-group full-width">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" rows="4" placeholder="Descripción del producto"></textarea>
+          </div>
+
+          <!-- Imagen del Producto -->
+          <div class="form-group full-width">
+            <label>Imagen del Producto</label>
+            <div class="image-upload">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <p>Arrastra una imagen aquí o haz clic para seleccionar</p>
+              <input type="file" id="image-input" accept="image/*" hidden>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Footer del modal -->
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel" class="btn-cancel">Cancelar</button>
+        <button type="submit" id="btn-submit" class="btn-submit">Crear Producto</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="../js/productos.js"></script>
+</body>
+
+</html>
