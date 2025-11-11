@@ -24,7 +24,7 @@ export class Product {
         INNER JOIN categorias ON productos.categoria_id = categorias.categoria_id
         WHERE id = ?`, [product_id]);
       if (!product) {
-        throw new Error('Producto no encontrado');
+        throw new Error('Producto no encontrado por ID');
       }
       return product;
     } catch (error) {
@@ -111,12 +111,33 @@ export class Product {
     }
   }
 
+  static async getProductsStats(){
+    try {
+      const [[result]] = await db.query(
+        `
+        SELECT
+          SUM(precio) AS valor_inventario,
+          COUNT(id) AS total_productos,
+          IFNULL((SELECT id FROM variedades_dakota.productos WHERE stock <= 5), 0) AS bajo_stock,
+          IFNULL((SELECT id FROM variedades_dakota.productos WHERE stock = 0), 0) AS agotados
+        FROM variedades_dakota.productos;
+        `
+      )
+      if (!result){
+        throw new Error('No se pudieron obtener las estadísticas de productos');
+      }
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
   static async getImagePublicId(id){
     try {
       const [[product]] = await db.query(
         `SELECT imagen_public_id FROM productos WHERE id = ?`, [id]);
       if (!product) {
-        throw new Error('Producto no encontrado');
+        throw new Error('Producto no encontrado por imagen ID');
       }
       return product.imagen_public_id;
     } catch (error) {
