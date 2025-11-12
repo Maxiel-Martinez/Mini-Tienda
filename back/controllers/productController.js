@@ -84,10 +84,10 @@ export class ProductController {
       if (updatedProduct instanceof Error) {
         throw updatedProduct;
       }
-      res.status(200).json({updatedProduct});
+      res.status(200).json({success: true, updatedProduct});
     } catch (error) {
       const deletedResult = await deleteImageFromCloudinary(uploadedImage.public_id);
-      return res.status(500).json({ error: 'Error updating the image', deleteStatus: deletedResult });
+      return res.status(500).json({ success: false, error: 'Error updating the image', deleteStatus: deletedResult });
     }
   }
 

@@ -3,6 +3,11 @@ const productsContainer = document.getElementById('products-grid')
 const closeBtn = document.getElementById('close-btn')
 const cancelBtn = document.getElementById('btn-cancel')
 const editProductForm = document.getElementById('basic-info-form')
+const imageUpload = document.getElementById('image-upload')
+const imageInput = document.getElementById('image-input')
+const imageForm = document.getElementById('form-image')
+const previewContainer = document.getElementById('preview-container');
+const imagePreview = document.getElementById('image-preview');
 
 document.addEventListener('DOMContentLoaded', () => {
   displayProducts()
@@ -16,6 +21,7 @@ productsContainer.addEventListener('click', async (e)=>{
     const productId = target.getAttribute('data-product')
     const product = await getProductById(productId)
     document.getElementById('producto_id').value = product.id
+    document.getElementById('producto_id_image').value = product.id
     document.getElementById('nombre').value = product.nombre
     document.getElementById('precio').value = product.precio
     document.getElementById('stock').value = product.stock
@@ -80,6 +86,61 @@ editProductForm.addEventListener('submit', async (e) =>{
     alert('Error al actualizar el producto');
   }
 })
+
+let selectedImageFile = null
+imageUpload.addEventListener('click', () =>{
+  imageInput.click()
+})
+imageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0]
+  selectedImageFile = file
+  showPreview(file)
+})
+
+imageForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  if (!selectedImageFile) {
+        alert('Por favor selecciona una imagen primero');
+        return;
+    }
+    document.getElementById('btn-img-upload').disabled = true
+    document.getElementById('btn-img-upload').textContent = 'subiendo la imagen...'
+  try {
+    const productoId = document.getElementById('producto_id_image').value
+    const formData = new FormData()
+    formData.append('image', selectedImageFile)
+    const response = await fetch(`${API_BASE_URL}/products/image/${productoId}`, {
+      method: 'PUT',
+      body: formData
+    })
+    const dataBack = await response.json()
+    if(!dataBack.success){
+      throw new Error(dataBack.error || 'Error al actualizar la imagen del producto')
+    }
+    alert('Imagen del producto actualizada correctamente')
+    modalOverlay.classList.remove('active');
+    resetUpload()
+    location.reload()
+  } catch (error) {
+    console.error('Error updating product image:', error);
+    alert('Error al actualizar la imagen del producto');
+  }
+})
+
+function showPreview(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        imagePreview.src = e.target.result;
+        previewContainer.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+}
+function resetUpload() {
+    selectedImageFile = null;
+    imageInput.value = '';
+    previewContainer.style.display = 'none';
+    imagePreview.src = '';
+}
 
 const displayProducts = async () => {
   const {products} = await getProducts()
