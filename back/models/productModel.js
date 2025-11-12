@@ -19,9 +19,8 @@ export class Product {
   static async getProductById(product_id) {
     try {
       const [[product]] = await db.query(
-        `SELECT id, nombre, descripcion, nombre_categoria, precio, stock, imagen_url
+        `SELECT id, nombre, descripcion, categoria_id, precio, stock, imagen_url
         FROM productos
-        INNER JOIN categorias ON productos.categoria_id = categorias.categoria_id
         WHERE id = ?`, [product_id]);
       if (!product) {
         throw new Error('Producto no encontrado por ID');
