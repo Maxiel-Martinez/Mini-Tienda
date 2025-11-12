@@ -125,62 +125,70 @@
 
       <!-- Contenido del modal -->
       <div class="modal-body">
-        <form class="product-form">
-          <!-- Fila 1: Nombre y Categoría -->
-          <div class="form-row">
-            <div class="form-group">
-              <label for="nombre">Nombre del Producto</label>
-              <input type="text" id="nombre" placeholder="Nombre del producto">
-            </div>
-            <div class="form-group">
-              <label for="categoria">Categoría</label>
-              <select id="categoria">
-                <option value="">Seleccionar categoría</option>
-                <option value="1">Categoría 1</option>
-                <option value="2">Categoría 2</option>
-                <option value="3">Categoría 3</option>
-              </select>
-            </div>
+        <div class="modal-split">
+          <!-- Columna Izquierda: Información Básica -->
+          <div class="modal-left">
+            <h3 class="section-title">Información Básica</h3>
+            <form id="basic-info-form" class="product-form" id="form-basic-info">
+              <input type="hidden" id="producto_id" name="producto_id">
+              <div class="form-group">
+                <label for="nombre">Nombre del Producto</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto">
+              </div>
+
+              <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <select id="categoria_id" name="categoria_id">
+                  <option value="">Seleccionar categoría</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="precio">Precio</label>
+                  <input type="number" id="precio" name="precio" placeholder="0" min="0">
+                </div>
+                <div class="form-group">
+                  <label for="stock">Stock</label>
+                  <input type="number" id="stock" name="stock" placeholder="0" min="0">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="4"
+                  placeholder="Descripción del producto"></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">Guardar Información</button>
+            </form>
           </div>
 
-          <!-- Fila 2: Precio, Costo y Stock Inicial -->
-          <div class="form-row">
-            <div class="form-group">
-              <label for="precio">Precio de Venta</label>
-              <input type="number" id="precio" placeholder="0">
-            </div>
-            <div class="form-group">
-              <label for="stock-inicial">Stock</label>
-              <input type="number" id="stock-inicial" placeholder="0">
-            </div>
-          </div>
+          <!-- Columna Derecha: Imagen del Producto -->
+          <div class="modal-right">
+            <h3 class="section-title">Imagen del Producto</h3>
+            <form class="image-form" id="form-image">
+              <div class="form-group">
+                <div class="image-upload">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                  <p>Arrastra una imagen aquí o haz clic para seleccionar</p>
+                  <input type="file" id="image-input" name="image" accept="image/*" hidden>
+                </div>
+              </div>
 
-          <!-- Descripción -->
-          <div class="form-group full-width">
-            <label for="descripcion">Descripción</label>
-            <textarea id="descripcion" rows="4" placeholder="Descripción del producto"></textarea>
+              <button type="submit" class="btn-submit">Subir Imagen</button>
+            </form>
           </div>
-
-          <!-- Imagen del Producto -->
-          <div class="form-group full-width">
-            <label>Imagen del Producto</label>
-            <div class="image-upload">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-              <p>Arrastra una imagen aquí o haz clic para seleccionar</p>
-              <input type="file" id="image-input" accept="image/*" hidden>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
 
       <!-- Footer del modal -->
       <div class="modal-footer">
         <button type="button" id="btn-cancel" class="btn-cancel">Cancelar</button>
-        <button type="submit" id="btn-submit" class="btn-submit">Crear Producto</button>
       </div>
     </div>
   </div>
