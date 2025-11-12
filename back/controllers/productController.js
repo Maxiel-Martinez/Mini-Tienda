@@ -84,10 +84,18 @@ export class ProductController {
       if (updatedProduct instanceof Error) {
         throw updatedProduct;
       }
-      res.status(200).json({updatedProduct});
+      res.status(200).json({success: true, updatedProduct});
     } catch (error) {
       const deletedResult = await deleteImageFromCloudinary(uploadedImage.public_id);
-      return res.status(500).json({ error: 'Error updating the image', deleteStatus: deletedResult });
+      return res.status(500).json({ success: false, error: 'Error updating the image', deleteStatus: deletedResult });
     }
+  }
+
+  static async getProductsStats(req, res){
+    const stats =  await Product.getProductsStats();
+    if (stats instanceof Error) {
+      return res.status(500).json({ error: stats.message });
+    }
+    res.status(200).json({stats});
   }
 }
