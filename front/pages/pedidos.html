@@ -1,150 +1,204 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedidos - Variedades Dakota</title>
-    <link rel="stylesheet" href="../css/pedidos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido a proveedores</title>
+  <link rel="stylesheet" href="../css/pedidos.css">
 </head>
+
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h1>Variedades Dakota</h1>
-            <p>Sistema de Gestión</p>
-        </div>
-        <div class="menu-item">
-            <span class="menu-icon">📊</span>
-            <span>Dashboard</span>
-        </div>
-        <div class="menu-item">
-            <span class="menu-icon">🛒</span>
-            <span>Ventas</span>
-        </div>
-        <div class="menu-item active">
-            <span class="menu-icon">📋</span>
-            <span>Pedidos</span>
-        </div>
-        <div class="menu-item">
-            <span class="menu-icon">👥</span>
-            <span>Clientes</span>
-        </div>
-        <div class="menu-item">
-            <span class="menu-icon">📦</span>
-            <span>Productos</span>
-        </div>
-        <div class="menu-item">
-            <span class="menu-icon">🏢</span>
-            <span>Proveedores</span>
-        </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h1>Variedades Dakota</h1>
+      <p>Sistema de Gestión</p>
+    </div>
+    <div class="menu-item">
+      <span class="menu-icon">📊</span>
+      <span>Dashboard</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-icon">🛒</span>
+      <span>Ventas</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-icon">📋</span>
+      <span>Pedidos</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-icon">👥</span>
+      <span>Clientes</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-icon">📦</span>
+      <span>Productos</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-icon">🏢</span>
+      <span>Proveedores</span>
+    </div>
+    <div class="menu-item active">
+      <span class="menu-icon">🏢</span>
+      <span>Pedidos a Proveedores</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="pedidos-container">
+    <div class="header">
+      <div>
+        <h1>Pedidos a Proveedores</h1>
+        <p class="subtitle">Gestiona las órdenes de compra a tus proveedores</p>
+      </div>
+      <button id="btn-nuevo" class="btn-nuevo">
+        + Nuevo Pedido
+      </button>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-left">
-                <h1>Pedidos a Proveedores</h1>
-                <p>Gestiona las órdenes de compra a tus proveedores</p>
-            </div>
-            <div class="header-right">
-                <button class="btn-nuevo">
-                    <span style="font-size: 18px;">+</span>
-                    Nuevo Pedido
-                </button>
-            </div>
-        </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Pedidos Pendientes</h3>
+        <div class="stat-number orange">5</div>
+        <p class="stat-label">Por recibir</p>
+      </div>
 
-        <!-- Stats Cards -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-card-title">Pedidos Pendientes</div>
-                <div class="stat-card-value">5</div>
-                <div class="stat-card-subtitle">Por recibir</div>
-            </div>
+      <div class="stat-card">
+        <h3>En Tránsito</h3>
+        <div class="stat-number blue">3</div>
+        <p class="stat-label">Enviados</p>
+      </div>
 
-            <div class="stat-card">
-                <div class="stat-card-title">En Tránsito</div>
-                <div class="stat-card-value">3</div>
-                <div class="stat-card-subtitle">Enviados</div>
-            </div>
+      <div class="stat-card">
+        <h3>Entregados Hoy</h3>
+        <div class="stat-number green">2</div>
+        <p class="stat-label">Recibidos</p>
+      </div>
 
-            <div class="stat-card">
-                <div class="stat-card-title">Entregados Hoy</div>
-                <div class="stat-card-value">2</div>
-                <div class="stat-card-subtitle">Recibidos</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-title">Total Mes</div>
-                <div class="stat-card-value">$2,450,000</div>
-                <div class="stat-card-subtitle">En pedidos</div>
-            </div>
-        </div>
-
-        <!-- Table -->
-        <div class="table-section">
-            <h2>Historial de Pedidos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Proveedor</th>
-                        <th>Fecha Pedido</th>
-                        <th>Fecha Entrega</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#001</td>
-                        <td>Distribuidora Central</td>
-                        <td>2024-01-15</td>
-                        <td>2024-01-20</td>
-                        <td>8 productos</td>
-                        <td class="amount-green">$450,000</td>
-                        <td><span class="badge badge-pendiente">Pendiente</span></td>
-                        <td>
-                            <div class="acciones">
-                                <button class="btn-accion">👁 Ver</button>
-                                <button class="btn-accion btn-recibir">✓ Recibir</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#002</td>
-                        <td>Mayorista del Norte</td>
-                        <td>2024-01-14</td>
-                        <td>2024-01-18</td>
-                        <td>5 productos</td>
-                        <td class="amount-green">$320,000</td>
-                        <td><span class="badge badge-entregado">Entregado</span></td>
-                        <td>
-                            <div class="acciones">
-                                <button class="btn-accion">👁 Ver</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#003</td>
-                        <td>Proveedora Sur</td>
-                        <td>2024-01-13</td>
-                        <td>2024-01-19</td>
-                        <td>3 productos</td>
-                        <td class="amount-green">$180,000</td>
-                        <td><span class="badge badge-transito">En Tránsito</span></td>
-                        <td>
-                            <div class="acciones">
-                                <button class="btn-accion">👁 Ver</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <div class="stat-card">
+        <h3>Total Mes</h3>
+        <div class="stat-number purple">$2,450,000</div>
+        <p class="stat-label">En pedidos</p>
+      </div>
     </div>
+
+    <div class="table-container">
+      <h2>Historial de Pedidos</h2>
+
+      <table class="pedidos-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Proveedor</th>
+            <th>Fecha Pedido</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="table-pedidos"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-nuevo-pedido">
+      <div class="modal-header">
+        <h2>Nuevo Pedido</h2>
+        <button id="btn-close" class="btn-close" type="button">✕</button>
+      </div>
+
+      <form id="formNuevoPedido" class="modal-body" enctype="multipart/form-data">
+        <!-- Información del Pedido -->
+        <div class="pedido-section">
+          <h3 class="section-title">Información del Pedido</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="proveedor">Proveedor</label>
+              <select class="form-select" id="proveedor" name="proveedor" required>
+                <option value="">Seleccionar proveedor</option>
+                <option value="1">Distribuidora Central</option>
+                <option value="2">Mayorista del Norte</option>
+                <option value="3">Proveedora Sur</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fecha_entrega">Fecha de Entrega</label>
+              <input type="date" class="form-input" id="fecha_entrega" name="fecha_entrega" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Producto del Pedido -->
+        <div class="producto-section">
+          <h3 class="section-title">Producto del Pedido</h3>
+
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="nombre">Nombre del Producto</label>
+              <input type="text" class="form-input" id="nombre" name="nombre" placeholder="Ej: Laptop HP Pavilion"
+                required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="descripcion">Descripción</label>
+              <textarea class="form-textarea" rows="3" id="descripcion" name="descripcion"
+                placeholder="Describe las características del producto..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="categoria_id">Categoría</label>
+              <select class="form-select" id="categoria_id" name="categoria_id" required>
+                <option value="">Seleccionar categoría</option>
+                <option value="1">Electrónica</option>
+                <option value="2">Ropa</option>
+                <option value="3">Alimentos</option>
+                <option value="4">Hogar</option>
+                <option value="5">Oficina</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="precio">Precio</label>
+              <input type="number" class="form-input" id="precio" name="precio" placeholder="0.00" step="0.01" min="0"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="stock">Stock</label>
+              <input type="number" class="form-input" id="stock" name="stock" placeholder="0" min="0" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="imagen">Imagen del Producto</label>
+              <div class="file-upload-container">
+                <input type="file" id="imagen" name="imagen" class="file-input" accept="image/*">
+                <label for="imagen" class="file-label">
+                  <span class="file-icon">📁</span>
+                  <span class="file-text">Seleccionar imagen</span>
+                </label>
+                <div class="file-preview" style="display: none;">
+                  <img src="" alt="Preview" class="preview-image">
+                  <button type="button" class="btn-remove-image">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones dentro del formulario -->
+        <div class="modal-footer">
+          <button id="btn-cancel" class="btn-cancelar" type="button">Cancelar</button>
+          <button class="btn-crear" type="submit">Crear Pedido</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="../js/pedidos.js"></script>
 </body>
+
 </html>
