@@ -6,6 +6,7 @@ import { productRouter } from "./routes/productRoutes.js";
 import clienteRoutes from "./routes/clienteRoutes.js";
 import proveedorRoutes from "./routes/proveedorRoutes.js";
 import cors from "cors"
+import { pedidosRouter } from "./routes/pedidosRoutes.js";
 
 loadEnvFile();
 
@@ -26,5 +27,6 @@ app.use('/api/categories',categoryRouter)
 app.use('/api/products',productRouter)
 app.use("/api/clientes", clienteRoutes);
 app.use("/api/proveedores", proveedorRoutes);
+app.use('/api/pedidos', pedidosRouter);
 
 app.listen(PORT, () => console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`));
