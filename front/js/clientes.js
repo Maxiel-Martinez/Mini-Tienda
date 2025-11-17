@@ -26,7 +26,12 @@ async function cargarClientes() {
         actualizarEstadisticas();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al cargar los clientes. Verifica que el servidor esté corriendo.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de conexión',
+            text: 'No se pudo cargar los clientes. Verifica que el servidor esté corriendo.',
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -48,12 +53,22 @@ async function guardarCliente() {
     const direccion = document.getElementById('direccion').value.trim();
 
     if (!nombre || !telefono) {
-        alert('Por favor completa los campos obligatorios (Nombre y Teléfono)');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: 'Por favor completa los campos obligatorios (Nombre y Teléfono)',
+            confirmButtonColor: '#667eea'
+        });
         return;
     }
 
     if (!correo) {
-        alert('Por favor completa el campo de correo electrónico');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Falta correo',
+            text: 'Por favor completa el campo de correo electrónico',
+            confirmButtonColor: '#667eea'
+        });
         return;
     }
 
@@ -91,13 +106,25 @@ async function guardarCliente() {
         }
 
         const result = await response.json();
-        alert(result.msg || (editandoId ? 'Cliente actualizado exitosamente' : 'Cliente creado exitosamente'));
+        
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: result.msg || (editandoId ? 'Cliente actualizado exitosamente' : 'Cliente creado exitosamente'),
+            timer: 2000,
+            showConfirmButton: false
+        });
         
         cerrarModal();
         cargarClientes();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al guardar el cliente: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al guardar el cliente: ' + error.message,
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -107,31 +134,49 @@ async function actualizarDeuda(clienteId) {
 
     const deudaActual = parseFloat(cliente.saldo || 0);
 
-    const accion = confirm(`Deuda actual de ${cliente.nombre}: $${deudaActual.toLocaleString()}\n\n¿Deseas registrar un pago?\n\nAceptar = Pagar\nCancelar = Agregar deuda`);
-    
-    const monto = prompt(accion ? '¿Cuánto va a pagar?' : '¿Cuánto se va a agregar a la deuda?');
-    
-    if (monto === null) return;
-    
-    const montoNumerico = parseFloat(monto);
-    
-    if (isNaN(montoNumerico) || montoNumerico <= 0) {
-        alert('Por favor ingresa un monto válido');
-        return;
-    }
+    // Primer modal: Seleccionar acción
+    const resultado = await Swal.fire({
+        title: `${cliente.nombre}`,
+        html: `<p style="font-size: 16px; margin: 10px 0;">Deuda actual: <strong style="color: #667eea; font-size: 20px;">${deudaActual.toLocaleString()}</strong></p>`,
+        icon: 'question',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: '💰 Registrar Pago',
+        denyButtonText: '📝 Agregar Deuda',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#10b981',
+        denyButtonColor: '#f59e0b',
+        cancelButtonColor: '#6b7280'
+    });
 
-    let nuevoSaldo;
-    if (accion) {
-        // Pagar
-        if (montoNumerico > deudaActual) {
-            alert('El monto no puede ser mayor a la deuda actual');
-            return;
+    if (resultado.isDismissed) return; // Usuario canceló completamente
+
+    const esPago = resultado.isConfirmed; // true si confirmó (pagar), false si denegó (agregar deuda)
+
+    // Segundo modal: Ingresar monto
+    const { value: monto } = await Swal.fire({
+        title: esPago ? '💵 Registrar Pago' : '📝 Agregar Deuda',
+        input: 'number',
+        inputLabel: esPago ? '¿Cuánto va a pagar?' : '¿Cuánto se va a agregar a la deuda?',
+        inputPlaceholder: 'Ingresa el monto',
+        showCancelButton: true,
+        confirmButtonText: 'Guardar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#667eea',
+        inputValidator: (value) => {
+            if (!value || parseFloat(value) <= 0) {
+                return 'Por favor ingresa un monto válido';
+            }
+            if (esPago && parseFloat(value) > deudaActual) {
+                return 'El monto no puede ser mayor a la deuda actual';
+            }
         }
-        nuevoSaldo = deudaActual - montoNumerico;
-    } else {
-        // Agregar deuda
-        nuevoSaldo = deudaActual + montoNumerico;
-    }
+    });
+
+    if (!monto) return; // Usuario canceló
+
+    const montoNumerico = parseFloat(monto);
+    const nuevoSaldo = esPago ? deudaActual - montoNumerico : deudaActual + montoNumerico;
 
     try {
         const response = await fetch(`${API_URL}/clientes/${clienteId}`, {
@@ -151,13 +196,23 @@ async function actualizarDeuda(clienteId) {
             throw new Error(errorData.msg || 'Error al actualizar deuda');
         }
 
-        const result = await response.json();
-        alert(`${accion ? 'Pago' : 'Deuda'} registrado exitosamente.\nNuevo saldo: $${nuevoSaldo.toLocaleString()}`);
+        Swal.fire({
+            icon: 'success',
+            title: esPago ? '✅ Pago registrado' : '✅ Deuda agregada',
+            html: `<p style="font-size: 16px;">Nuevo saldo: <strong style="color: #667eea; font-size: 20px;">$${nuevoSaldo.toLocaleString()}</strong></p>`,
+            timer: 2500,
+            showConfirmButton: false
+        });
         
         cargarClientes();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al actualizar la deuda: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al actualizar la deuda: ' + error.message,
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -165,7 +220,18 @@ async function eliminarCliente(clienteId) {
     const cliente = clientes.find(c => c.id === clienteId);
     if (!cliente) return;
 
-    if (!confirm(`¿Estás seguro de eliminar a ${cliente.nombre}?`)) return;
+    const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        html: `Se eliminará a <strong>${cliente.nombre}</strong><br>Esta acción no se puede deshacer`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
         const response = await fetch(`${API_URL}/clientes/${clienteId}`, {
@@ -177,12 +243,23 @@ async function eliminarCliente(clienteId) {
             throw new Error(errorData.msg || 'Error al eliminar cliente');
         }
 
-        const result = await response.json();
-        alert(result.msg || 'Cliente eliminado exitosamente');
+        Swal.fire({
+            icon: 'success',
+            title: '¡Eliminado!',
+            text: 'Cliente eliminado exitosamente',
+            timer: 2000,
+            showConfirmButton: false
+        });
+        
         cargarClientes();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al eliminar el cliente: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al eliminar el cliente: ' + error.message,
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -271,7 +348,12 @@ function editarCliente(id) {
     const cliente = clientes.find(c => c.id === id);
 
     if (!cliente) {
-        alert('Cliente no encontrado');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Cliente no encontrado',
+            confirmButtonColor: '#667eea'
+        });
         return;
     }
 
