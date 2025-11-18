@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,56 +8,29 @@
     <title>Variedades Dakota - Dashboard</title>
 
 </head>
+
 <body>
-    <!-- sidebar.html -->
-<div class="sidebar">
-    <div class="sidebar-header">
-        <h1>Variedades Dakota</h1>
-        <p>Sistema de Gestión</p>
-    </div>
-    <div class="menu-item" data-page="dashboard">
-        <span class="menu-icon">📊</span>
-        <span>Dashboard</span>
-    </div>
-    <div class="menu-item" data-page="ventas">
-        <span class="menu-icon">🛒</span>
-        <span>Ventas</span>
-    </div>
-    <div class="menu-item" data-page="pedidos">
-        <span class="menu-icon">📋</span>
-        <span>Pedidos</span>
-    </div>
-    <div class="menu-item" data-page="clientes">
-        <span class="menu-icon">👥</span>
-        <span>Clientes</span>
-    </div>
-    <div class="menu-item" data-page="productos">
-        <span class="menu-icon">📦</span>
-        <span>Productos</span>
-    </div>
-    <div class="menu-item" data-page="proveedores">
-        <span class="menu-icon">🏢</span>
-        <span>Proveedores</span>
-    </div>
-</div>
     <div class="main-content">
         <div class="header">
             <h1>Panel de Control</h1>
             <div class="user-section">
                 <div class="notification-badge">
                     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
                     </svg>
                     <span class="badge">3</span>
                 </div>
-                <div class="user-avatar">A</div>
-                <span style="color: #333; font-weight: 500;">Administrador</span>
+                <div class="user-avatar" id="user-avatar"></div>
+                <span id="user-role" style="color: #333; font-weight: 500;"></span>
             </div>
         </div>
 
-        <div class="dashboard-title">
-            <h2>Dashboard</h2>
-            <p>Resumen general del negocio</p>
+        <div class="layout">
+            <div id="sidebar-container"></div>
+            <div class="dashboard-title">
+                <h2>Dashboard</h2>
+                <p>Resumen general del negocio</p>
+            </div>
         </div>
 
         <div class="stats-grid">
@@ -65,7 +39,8 @@
                     <span class="stat-card-title">Ventas del Mes</span>
                     <div class="stat-icon dark-blue">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                            <path
+                                d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
                         </svg>
                     </div>
                 </div>
@@ -81,7 +56,7 @@
                     <span class="stat-card-title">Clientes con Deuda</span>
                     <div class="stat-icon medium-blue">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                         </svg>
                     </div>
                 </div>
@@ -97,7 +72,8 @@
                     <span class="stat-card-title">Pedidos Pendientes</span>
                     <div class="stat-icon light-blue">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 2a1 1 0 00-1 1v1H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1h-4V3a1 1 0 00-1-1H9z"/>
+                            <path
+                                d="M9 2a1 1 0 00-1 1v1H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1h-4V3a1 1 0 00-1-1H9z" />
                         </svg>
                     </div>
                 </div>
@@ -113,7 +89,7 @@
                     <span class="stat-card-title">Productos Bajo Stock</span>
                     <div class="stat-icon medium-blue">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"/>
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
                         </svg>
                     </div>
                 </div>
@@ -139,6 +115,10 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-     <script src="../js/scriptD.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/scriptD.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/sidebar.js"></script>
 </body>
+
 </html>

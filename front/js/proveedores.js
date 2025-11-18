@@ -27,7 +27,12 @@ async function cargarProveedores() {
         renderizarTabla();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al cargar los proveedores. Verifica que el servidor esté corriendo.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de conexión',
+            text: 'No se pudo cargar los proveedores. Verifica que el servidor esté corriendo.',
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -64,7 +69,12 @@ async function guardarProveedor() {
     const telefono = document.getElementById('telefono').value.trim();
 
     if (!nombre || !telefono) {
-        alert('Por favor completa los campos obligatorios (Nombre del Proveedor y Teléfono)');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: 'Por favor completa los campos obligatorios (Nombre del Proveedor y Teléfono)',
+            confirmButtonColor: '#667eea'
+        });
         return;
     }
 
@@ -97,14 +107,26 @@ async function guardarProveedor() {
         }
 
         const result = await response.json();
-        alert(result.msg || (editandoId ? 'Proveedor actualizado exitosamente' : 'Proveedor creado exitosamente'));
+        
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: result.msg || (editandoId ? 'Proveedor actualizado exitosamente' : 'Proveedor creado exitosamente'),
+            timer: 2000,
+            showConfirmButton: false
+        });
         
         cerrarModal();
         cargarProveedores();
         cargarEstadisticas();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al guardar el proveedor: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al guardar el proveedor: ' + error.message,
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -112,7 +134,18 @@ async function eliminarProveedor(proveedorId) {
     const proveedor = proveedores.find(p => p.id === proveedorId);
     if (!proveedor) return;
 
-    if (!confirm(`¿Estás seguro de eliminar a ${proveedor.nombre}?`)) return;
+    const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        html: `Se eliminará a <strong>${proveedor.nombre}</strong><br>Esta acción no se puede deshacer`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
         const response = await fetch(`${API_URL}/proveedores/${proveedorId}`, {
@@ -124,13 +157,24 @@ async function eliminarProveedor(proveedorId) {
             throw new Error(errorData.msg || 'Error al eliminar proveedor');
         }
 
-        const result = await response.json();
-        alert(result.msg || 'Proveedor eliminado exitosamente');
+        Swal.fire({
+            icon: 'success',
+            title: '¡Eliminado!',
+            text: 'Proveedor eliminado exitosamente',
+            timer: 2000,
+            showConfirmButton: false
+        });
+        
         cargarProveedores();
         cargarEstadisticas();
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al eliminar el proveedor: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al eliminar el proveedor: ' + error.message,
+            confirmButtonColor: '#667eea'
+        });
     }
 }
 
@@ -204,7 +248,12 @@ function editarProveedor(id) {
     const proveedor = proveedores.find(p => p.id === id);
 
     if (!proveedor) {
-        alert('Proveedor no encontrado');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Proveedor no encontrado',
+            confirmButtonColor: '#667eea'
+        });
         return;
     }
 
@@ -222,5 +271,19 @@ function verProveedor(id) {
     const proveedor = proveedores.find(p => p.id === id);
     if (!proveedor) return;
 
-    alert(`Información del Proveedor:\n\nNombre: ${proveedor.nombre}\nContacto: ${proveedor.empresa || 'N/A'}\nTeléfono: ${proveedor.telefono}\nPedidos: ${proveedor.totalPedidos}`);
+    Swal.fire({
+        title: `📦 ${proveedor.nombre}`,
+        html: `
+            <div style="text-align: left; padding: 10px;">
+                <p style="margin: 10px 0;"><strong>👤 Contacto:</strong> ${proveedor.empresa || 'N/A'}</p>
+                <p style="margin: 10px 0;"><strong>📞 Teléfono:</strong> ${proveedor.telefono}</p>
+                <p style="margin: 10px 0;"><strong>📋 Total Pedidos:</strong> ${proveedor.totalPedidos}</p>
+                <p style="margin: 10px 0;"><strong>📊 Estado:</strong> <span style="color: ${proveedor.totalPedidos > 0 ? '#10b981' : '#ef4444'}; font-weight: bold;">${proveedor.totalPedidos > 0 ? 'Activo' : 'Inactivo'}</span></p>
+            </div>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Cerrar',
+        confirmButtonColor: '#667eea',
+        width: '500px'
+    });
 }

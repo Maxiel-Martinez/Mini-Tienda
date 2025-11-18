@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/ventas.css">
     <title>Dashboard de Ventas</title>
-  
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Sidebar -->
@@ -58,26 +59,26 @@
         <div class="cards-grid">
             <div class="card">
                 <div class="card-title">Ventas Hoy</div>
-                <div class="card-amount">$125,000</div>
-                <div class="card-subtitle">15 transacciones</div>
+                <div class="card-amount">$0</div>
+                <div class="card-subtitle">0 transacciones</div>
             </div>
 
             <div class="card">
                 <div class="card-title">Efectivo</div>
-                <div class="card-amount">$45,000</div>
-                <div class="card-subtitle">36% del total</div>
+                <div class="card-amount">$0</div>
+                <div class="card-subtitle">0% del total</div>
             </div>
 
             <div class="card">
                 <div class="card-title">Transferencias</div>
-                <div class="card-amount">$35,000</div>
-                <div class="card-subtitle">28% del total</div>
+                <div class="card-amount">$0</div>
+                <div class="card-subtitle">0% del total</div>
             </div>
 
             <div class="card">
                 <div class="card-title">Créditos Pendientes</div>
-                <div class="card-amount">$18,000</div>
-                <div class="card-subtitle">36% del total</div>
+                <div class="card-amount">$0</div>
+                <div class="card-subtitle">Por cobrar</div>
             </div>
         </div>
 
@@ -95,41 +96,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#1</td>
-                        <td class="amount-green">$45,000</td>
-                        <td><span class="badge badge-efectivo">Efectivo</span></td>
-                        <td>2024-01-20</td>
-                        <td><span class="badge badge-completado">Completado</span></td>
-                        <td><button class="btn-ver">👁 Ver</button></td>
-                    </tr>
-                    <tr>
-                        <td>#2</td>
-                        <td class="amount-green">$32,000</td>
-                        <td><span class="badge badge-transferencia">Transferencia</span></td>
-                        <td>2024-01-20</td>
-                        <td><span class="badge badge-completado">Completado</span></td>
-                        <td><button class="btn-ver">👁 Ver</button></td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td class="amount-green">$18,000</td>
-                        <td><span class="badge badge-efectivo">Efectivo</span></td>
-                        <td>2024-01-19</td>
-                        <td><span class="badge badge-pendiente">Pendiente</span></td>
-                        <td><button class="btn-ver">👁 Ver</button></td>
-                    </tr>
-                    <tr>
-                        <td>#4</td>
-                        <td class="amount-green">$25,000</td>
-                        <td><span class="badge badge-transferencia">Transferencia</span></td>
-                        <td>2024-01-19</td>
-                        <td><span class="badge badge-completado">Completado</span></td>
-                        <td><button class="btn-ver">👁 Ver</button></td>
-                    </tr>
+                    <!-- Se carga dinámicamente -->
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script src="../js/ventas.js"></script>
 </body>
 </html>

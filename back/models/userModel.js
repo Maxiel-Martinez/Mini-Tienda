@@ -10,9 +10,11 @@ export class User {
       if (emailExists) {
         throw new Error('El correo ya está registrado');
       }
+
+      const rol_id = 2;
       const [result] = await db.query(
-        "INSERT INTO usuarios (nombre_completo, correo, contrasena) VALUES (?, ?, ?)",
-        [nombre_completo, correo, hashedPassword]
+        "INSERT INTO usuarios (nombre_completo, correo, contrasena, rol_id) VALUES (?, ?, ?, ?)",
+        [nombre_completo, correo, hashedPassword, rol_id]
       );
 
       const [[newUser]] = await db.query("SELECT id, nombre_completo, correo FROM usuarios WHERE id = ?", [result.insertId]);
@@ -28,7 +30,7 @@ export class User {
 
   static async login({ correo, contrasena }){
     try {
-      const [[user]] = await db.query("SELECT id, nombre_completo, correo, contrasena FROM usuarios WHERE correo = ?", [correo]);
+      const [[user]] = await db.query("SELECT id, nombre_completo, correo, contrasena, rol_id FROM usuarios WHERE correo = ?", [correo]);
       if (!user) {
         throw new Error('Usuario no encontrado');
       }
