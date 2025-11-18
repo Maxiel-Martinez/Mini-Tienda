@@ -20,24 +20,24 @@ export class PedidosModel {
 
   static async createPedido(pedidoData){
     try {
-      const { proveedor_id, total, estado, nombre, descripcion, categoria_id, precio, stock, imagen_url, imagen_public_id } = pedidoData
+      const { proveedor_id, total, nombre, descripcion, categoria_id, precio, stock, imagen_url, imagen_public_id } = pedidoData
       const [insertPedido] = await db.query(
-        `INSERT INTO pedidos (proveedor_id, total, estado)
-        VALUES (?, ?, ?)`,
-        [proveedor_id, total, estado]
+        `INSERT INTO pedidos (proveedor_id, total)
+        VALUES (?, ?)`,
+        [proveedor_id, total]
       )
       const pedidoId = insertPedido.insertId;
       const isertProductos = await Product.createProduct({ nombre, descripcion, categoria_id, precio, stock, imagen_url, imagen_public_id });
       await db.query(
-        `INSERT INTO pedido_productos (pedido_id, producto_id)
+        `INSERT INTO pedidos_productos (id_pedido, id_producto)
         VALUES (?, ?)`,
         [pedidoId, isertProductos.id]
       )
       const [[newPedido]] = await db.query(
         `SELECT pedidos.id, proveedor_id, total, estado, fecha, nombre, precio, stock
         FROM pedidos
-        INNER JOIN pedido_productos ON pedidos.id = pedido_productos.pedido_id
-        INNER JOIN productos ON pedido_productos.producto_id = productos.id
+        INNER JOIN pedidos_productos ON pedidos.id = pedidos_productos.id_pedido
+        INNER JOIN productos ON pedidos_productos.id_producto = productos.id
         WHERE pedidos.id = ?`, [pedidoId]
       )
       if (!newPedido) {

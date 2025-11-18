@@ -26,9 +26,9 @@ export class PedidosController{
 
       const newPedido = await PedidosModel.createPedido(pedidoData);
       if (newPedido instanceof Error) {
-        return  res.status(500).json({ success: false, error: newPedido.message });
+        throw newPedido;
       }
-      res.status(201).json({succes: true, newPedido});
+      res.status(201).json({success: true, newPedido});
     } catch (error) {
       const deleteImage = await deleteImageFromCloudinary(imageUploaded.public_id);
       return res.status(500).json({ success: false,  error: 'Error creating the pedido', deleteStatus: deleteImage });
