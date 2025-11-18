@@ -117,8 +117,8 @@ export class Product {
         SELECT
           SUM(precio) AS valor_inventario,
           COUNT(id) AS total_productos,
-          IFNULL((SELECT id FROM variedades_dakota.productos WHERE stock <= 5), 0) AS bajo_stock,
-          IFNULL((SELECT id FROM variedades_dakota.productos WHERE stock = 0), 0) AS agotados
+          IFNULL((SELECT COUNT(id) FROM variedades_dakota.productos WHERE stock <= 5), 0) AS bajo_stock,
+          IFNULL((SELECT COUNT(id) FROM variedades_dakota.productos WHERE stock = 0), 0) AS agotados
         FROM variedades_dakota.productos;
         `
       )
