@@ -18,6 +18,24 @@ export class PedidosModel {
     }
   }
 
+  static async getPedidoById(pedido_id){
+    try {
+      const [[pedido]] = await db.query(
+        `SELECT pedidos.id, nombre, total, estado, fecha, nombre, precio, stock
+        FROM pedidos
+        INNER JOIN pedidos_productos ON pedidos.id = pedidos_productos.id_pedido
+        INNER JOIN productos ON pedidos_productos.id_producto = productos.id
+        WHERE pedidos.id = ?`, [pedido_id]
+      )
+      if (!pedido) {
+        throw new Error('Pedido no encontrado por ID');
+      }
+      return pedido
+    } catch (error) {
+      return error
+    }
+  }
+
   static async createPedido(pedidoData){
     try {
       const { proveedor_id, total, nombre, descripcion, categoria_id, precio, stock, imagen_url, imagen_public_id } = pedidoData

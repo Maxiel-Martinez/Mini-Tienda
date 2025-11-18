@@ -7,7 +7,16 @@ export class PedidosController{
     if (pedidos instanceof Error) {
       return res.status(404).json({success: false, error: pedidos.message });
     }
-    res.status(200).json({succes: true, pedidos});
+    res.status(200).json({success: true, pedidos});
+  }
+
+  static async getPedidoById(req, res) {
+    const { pedido_id } = req.params;
+    const pedido = await PedidosModel.getPedidoById(pedido_id);
+    if (pedido instanceof Error) {
+      return res.status(404).json({success: false, error: pedido.message });
+    }
+    res.status(200).json({success: true, pedido});
   }
 
   static async createPedido(req, res){
