@@ -21,8 +21,11 @@ export class PedidosModel {
   static async getPedidoById(pedido_id){
     try {
       const [[pedido]] = await db.query(
-        `SELECT pedidos.id, nombre, total, estado, fecha, nombre, precio, stock
+        `SELECT pedidos.id, fecha, total, estado,
+          productos.nombre AS nombre_producto, precio, stock,
+          proveedores.nombre AS nombre_proveedor
         FROM pedidos
+        INNER JOIN proveedores ON pedidos.proveedor_id = proveedores.id
         INNER JOIN pedidos_productos ON pedidos.id = pedidos_productos.id_pedido
         INNER JOIN productos ON pedidos_productos.id_producto = productos.id
         WHERE pedidos.id = ?`, [pedido_id]

@@ -5,6 +5,10 @@ const closeBtn = document.getElementById('btn-close')
 const cancelBtn = document.getElementById('btn-cancel')
 const pedidosForm = document.getElementById('formNuevoPedido')
 const imageInput = document.getElementById('imagen')
+const pedidosTable = document.getElementById('table-pedidos')
+const cerrarDetalles = document.getElementById('cerrar-detalle')
+const botoncerrar = document.getElementById('boton-cerrar')
+const detalleOverlay = document.getElementById('overlay-detalle')
 
 document.addEventListener('DOMContentLoaded', () => {
   displayPedidoStats()
@@ -29,6 +33,40 @@ imageInput.addEventListener('change', (e) => {
   showPreview(e.target.files[0]);
 })
 
+pedidosTable.addEventListener('click', async (e) => {
+  const showDetails  = e.target.closest('.btn-action')
+  const recibirPedido = e.target.closest('.btn-recibir')
+
+  if (showDetails){
+    const pedidoId = showDetails.getAttribute('data-id')
+    const {success, pedido} =  await getpedidoById(pedidoId)
+    if (!success) {
+      alert('Error al obtener los detalles del pedido')
+      return
+    }
+    document.getElementById('id_pedido').textContent = pedido.id
+    document.getElementById('nombre_proveedor').textContent = pedido.nombre_proveedor
+    document.getElementById('fecha_pedido').textContent = formatearFechaHora(pedido.fecha)
+    document.getElementById('total_pedido').textContent = `$${pedido.total}`
+    document.getElementById('estado_pedido').textContent = pedido.estado.charAt(0).toUpperCase() + pedido.estado.slice(1)
+    document.getElementById('estado_pedido').className = `etiqueta-estado ${pedido.estado === "pendiente" ? "estado-pendiente" : pedido.estado === "en_transito" ? "estado-transito" : "estado-entregado"}`
+    document.getElementById('nombre_producto').textContent = pedido.nombre
+    document.getElementById('precio_producto').textContent = `$${pedido.precio}`
+    document.getElementById('stock_producto').textContent = `${pedido.stock} unidades`
+    const subtotal = pedido.precio * pedido.stock
+    document.getElementById('subtotal').textContent = `$${subtotal}`
+    detalleOverlay.classList.add('active')
+  }
+})
+
+cerrarDetalles.addEventListener('click', () => {
+  detalleOverlay.classList.remove('active')
+})
+
+botoncerrar.addEventListener('click', () => {
+  detalleOverlay.classList.remove('active')
+})
+
 function formatearFechaHora(fecha) {
   const date = new Date(fecha);
   const year = date.getFullYear();
@@ -44,6 +82,7 @@ const getAllPedidos = () => apiFetch('/pedidos');
 const getCategoryValues = () =>  apiFetch('/categories')
 const getProveedores = () =>  apiFetch('/proveedores')
 const getpedidosStats = () =>  apiFetch('/pedidos/stats')
+const getpedidoById = (id) => apiFetch(`/pedidos/${id}`)
 
 pedidosForm.addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -83,7 +122,6 @@ function showPreview(file) {
 
 const displayPedidos = async () => {
   const {success, pedidos } = await getAllPedidos();
-  const pedidosTable = document.getElementById('table-pedidos')
 
   if (!success){
     pedidosTable.innerHTML = `<tr><td colspan="7">No hay pedidos en este momento</td></tr>`
@@ -99,8 +137,8 @@ const displayPedidos = async () => {
       <td class="total-green">$ ${pedido.total}</td>
       <td><span class="badge ${pedido.estado === "recibido" ? "badge-delivered" : pedido.estado === "pendiente" ? "badge-pending" : "badge-transit"}">${pedido.estado}</span></td>
       <td>
-        <button class="btn-action">👁 Ver</button>
-        ${pedido.estado === "recibido" ? '' : '<button class="btn-recibir">✓ Recibir</button>'}
+        <button class="btn-action" data-id="${pedido.id}">👁 Ver</button>
+        ${pedido.estado === "recibido" ? '' : `<button class="btn-recibir" data-id="${pedido.id}">✓ Recibir</button>`}
       </td>
     </tr>
     `
