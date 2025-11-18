@@ -7,6 +7,7 @@ const pedidosForm = document.getElementById('formNuevoPedido')
 const imageInput = document.getElementById('imagen')
 
 document.addEventListener('DOMContentLoaded', () => {
+  displayPedidoStats()
   displayPedidos()
 })
 
@@ -42,6 +43,7 @@ function formatearFechaHora(fecha) {
 const getAllPedidos = () => apiFetch('/pedidos');
 const getCategoryValues = () =>  apiFetch('/categories')
 const getProveedores = () =>  apiFetch('/proveedores')
+const getpedidosStats = () =>  apiFetch('/pedidos/stats')
 
 pedidosForm.addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -122,3 +124,14 @@ const displayProveedoresOptions = async () => {
 }
 
 const displayPedidoStats = async () => {
+  const pedidosPendientes = document.getElementById('pedidos_pendientes')
+  const entregadosHoy = document.getElementById('entregados_hoy')
+  const totalMes = document.getElementById('total_mes')
+  const {success, stats} = await getpedidosStats()
+
+  if (!success) return
+
+  pedidosPendientes.textContent = stats.pedidos_pendientes
+  entregadosHoy.textContent = stats.entregados_hoy
+  totalMes.textContent = `$${stats.total_mes}`
+}
