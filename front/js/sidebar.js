@@ -71,4 +71,14 @@ function initializeSidebar() {
       window.location.href = "../pages/login.html";
     }
   });
+
+  document.querySelectorAll(".menu-item").forEach(item => {
+    const page = item.getAttribute("data-page");
+
+    if (page && !item.classList.contains("logout")) {
+      item.addEventListener("click", () => {
+        window.location.href = `../pages/${page}.html`;
+      });
+    }
+  });
 }
