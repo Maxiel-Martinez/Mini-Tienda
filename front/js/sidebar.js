@@ -18,38 +18,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function initializeSidebar() {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (!userData) {
-        window.location.href = "login.html";
-        return;
-    }
+  const userData = JSON.parse(localStorage.getItem("user"));
+  if (!userData) {
+    window.location.href = "login.html";
+    return;
+  }
 
-    // Mostrar inicial y rol
-    const avatar = document.getElementById("user-avatar");
-    const role = document.getElementById("user-role");
+  // Mostrar inicial y rol
+  const avatar = document.getElementById("user-avatar");
+  const role = document.getElementById("user-role");
 
-    if (avatar && role) {
-        avatar.textContent = userData.nombre_completo.charAt(0).toUpperCase();
-        role.textContent = userData.rol_id === 1 ? "Administrador" : "Empleado";
-    }
+  if (avatar && role) {
+    avatar.textContent = userData.nombre_completo.charAt(0).toUpperCase();
+    role.textContent = userData.rol_id === 1 ? "Administrador" : "Empleado";
+  }
 
-    // Controlar visibilidad del menú
-    const menuItems = document.querySelectorAll(".menu-item");
-    if (userData.rol_id === 2) {
-        menuItems.forEach(item => {
-            const page = item.getAttribute("data-page");
-            if (page !== "ventas" && !item.classList.contains("logout")) {
-                item.style.display = "none";
-            }
-        });
-    }
+  // Controlar visibilidad del menú
+  const menuItems = document.querySelectorAll(".menu-item");
+  if (userData.rol_id === 2) {
+    menuItems.forEach(item => {
+      const page = item.getAttribute("data-page");
+      if (page !== "ventas" && !item.classList.contains("logout")) {
+        item.style.display = "none";
+      }
+    });
+  }
 
-    // Logout
-    const logoutBtn = document.getElementById("logout-btn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("user");
-            window.location.href = "../pages/login.html";
-        });
+  // Logout
+  document.getElementById("logout-btn").addEventListener("click", async () => {
+    const confirm = await Swal.fire({
+      title: "¿Cerrar sesión?",
+      text: "Tu sesión se cerrará y volverás al inicio de sesión.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, salir",
+      cancelButtonText: "Cancelar"
+    });
+
+    if (confirm.isConfirmed) {
+      localStorage.removeItem("user");
+      await Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: "Sesión cerrada correctamente",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      });
+      window.location.href = "../pages/login.html";
     }
+  });
 }
