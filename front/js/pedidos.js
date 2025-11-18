@@ -3,12 +3,16 @@ const newPedidoBtn = document.getElementById('btn-nuevo')
 const modalOverlay = document.getElementById('modal-overlay')
 const closeBtn = document.getElementById('btn-close')
 const cancelBtn = document.getElementById('btn-cancel')
+const pedidosForm = document.getElementById('formNuevoPedido')
+const imageInput = document.getElementById('imagen')
 
 document.addEventListener('DOMContentLoaded', () => {
   displayPedidos()
 })
 
 newPedidoBtn.addEventListener('click', () => {
+  displayCategoryOptions()
+  displayProveedoresOptions()
   modalOverlay.classList.add('active')
 })
 
@@ -20,7 +24,50 @@ cancelBtn.addEventListener('click', () => {
     modalOverlay.classList.remove('active');
 });
 
+imageInput.addEventListener('change', (e) => {
+  showPreview(e.target.files[0]);
+})
+
+
 const getAllPedidos = () => apiFetch('/pedidos');
+const getCategoryValues = () =>  apiFetch('/categories')
+const getProveedores = () =>  apiFetch('/proveedores')
+
+pedidosForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const formData = new FormData(pedidosForm)
+  const data = Object.fromEntries(formData)
+  const totalPrecio = parseFloat(data.precio) * parseInt(data.stock)
+  formData.append('total', totalPrecio)
+  try {
+    const response = await apiFetch('/pedidos', {
+      method: 'POST',
+      body: formData
+    })
+
+    const {success} = await response.json()
+    if (!success){
+      throw new Error('Error creating the pedido')
+    }
+    alert('Pedido creado exitosamente')
+    modalOverlay.classList.remove('active')
+    location.reload()
+  } catch (error) {
+    console.error('Error updating product image:', error)
+    alert('Error al actualizar la imagen del producto')
+  }
+})
+
+function showPreview(file) {
+  const previewContainer = document.getElementById('preview-container');
+  const imagePreview = document.getElementById('image-preview');
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        imagePreview.src = e.target.result;
+        previewContainer.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+}
 
 const displayPedidos = async () => {
   const {success, pedidos } = await getAllPedidos();
@@ -49,3 +96,21 @@ const displayPedidos = async () => {
     `
   ).join(''))
 }
+
+const displayCategoryOptions = async () => {
+  const categorySelect = document.getElementById('categoria_id')
+  const {categories} = await getCategoryValues()
+  categorySelect.insertAdjacentHTML('beforeend', categories.map(category =>
+    `<option value="${category.categoria_id}">${category.nombre_categoria}</option>`
+  ).join(''))
+}
+
+const displayProveedoresOptions = async () => {
+  const proveedorSelect = document.getElementById('proveedor')
+  const {proveedores} = await getProveedores()
+  proveedorSelect.insertAdjacentHTML('beforeend', proveedores.map(proveedor =>
+    `<option value="${proveedor.id}">${proveedor.nombre}</option>`
+  ).join(''))
+}
+
+const displayPedidoStats = async () => {

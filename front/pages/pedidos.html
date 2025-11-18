@@ -104,6 +104,7 @@
     </div>
   </div>
 
+  <!-- modal creacion -->
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal-nuevo-pedido">
       <div class="modal-header">
@@ -118,17 +119,9 @@
           <div class="form-row">
             <div class="form-group">
               <label for="proveedor">Proveedor</label>
-              <select class="form-select" id="proveedor" name="proveedor" required>
+              <select class="form-select" id="proveedor" name="proveedor_id" required>
                 <option value="">Seleccionar proveedor</option>
-                <option value="1">Distribuidora Central</option>
-                <option value="2">Mayorista del Norte</option>
-                <option value="3">Proveedora Sur</option>
               </select>
-            </div>
-
-            <div class="form-group">
-              <label for="fecha_entrega">Fecha de Entrega</label>
-              <input type="date" class="form-input" id="fecha_entrega" name="fecha_entrega" required>
             </div>
           </div>
         </div>
@@ -154,43 +147,36 @@
               <label for="categoria_id">Categoría</label>
               <select class="form-select" id="categoria_id" name="categoria_id" required>
                 <option value="">Seleccionar categoría</option>
-                <option value="1">Electrónica</option>
-                <option value="2">Ropa</option>
-                <option value="3">Alimentos</option>
-                <option value="4">Hogar</option>
-                <option value="5">Oficina</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="precio">Precio</label>
+              <label for="precio">Precio Unitario</label>
               <input type="number" class="form-input" id="precio" name="precio" placeholder="0.00" step="0.01" min="0"
                 required>
             </div>
 
             <div class="form-group">
-              <label for="stock">Stock</label>
+              <label for="stock">Cantidad</label>
               <input type="number" class="form-input" id="stock" name="stock" placeholder="0" min="0" required>
             </div>
 
             <div class="form-group full-width">
               <label for="imagen">Imagen del Producto</label>
               <div class="file-upload-container">
-                <input type="file" id="imagen" name="imagen" class="file-input" accept="image/*">
+                <input type="file" id="imagen" name="image" class="file-input" accept="image/*">
                 <label for="imagen" class="file-label">
                   <span class="file-icon">📁</span>
                   <span class="file-text">Seleccionar imagen</span>
                 </label>
-                <div class="file-preview" style="display: none;">
-                  <img src="" alt="Preview" class="preview-image">
+                <div id="preview-container" class="file-preview" style="display: none;">
+                  <img id="image-preview" src="" alt="Preview" class="preview-image">
                   <button type="button" class="btn-remove-image">✕</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Botones dentro del formulario -->
         <div class="modal-footer">
           <button id="btn-cancel" class="btn-cancelar" type="button">Cancelar</button>
           <button class="btn-crear" type="submit">Crear Pedido</button>

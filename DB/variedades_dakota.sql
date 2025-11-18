@@ -30,7 +30,8 @@ CREATE TABLE productos (
     precio DECIMAL(10,2) NOT NULL,
     stock INT NOT NULL,
     categoria_id INT NOT NULL,
-    imagen_url VARCHAR(255),
+    imagen_public_id VARCHAR(200),
+    imagen_url TEXT,
     FOREIGN KEY (categoria_id) REFERENCES categorias(categoria_id)
 );
 
@@ -92,7 +93,7 @@ CREATE TABLE pedidos (
 );
 
 CREATE TABLE pedidos_productos (
-	id_pedido_producto INT PRIMARY KEY,
+	id_pedido_producto INT PRIMARY KEY AUTO_INCREMENT,
     id_producto INT NOT NULL,
     id_pedido INT NOT NULL,
     FOREIGN KEY (id_producto) REFERENCES productos(id),
