@@ -12,7 +12,6 @@ window.onload = function() {
 async function cargarClientes() {
     try {
         const response = await fetch(`${API_URL}/clientes`);
-        if (!response.ok) throw new Error('Error al cargar clientes');
         
         const data = await response.json();
         clientes = data.clientes || [];
