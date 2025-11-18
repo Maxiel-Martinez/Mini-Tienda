@@ -43,4 +43,12 @@ export class PedidosController{
       return res.status(500).json({ success: false,  error: 'Error creating the pedido', deleteStatus: deleteImage });
     }
   }
+
+  static async getPedidoStats(req, res){
+    const stats = await PedidosModel.getPedidoStats()
+    if (stats instanceof Error) {
+      return res.status(500).json({success: false, error: stats.message })
+    }
+    res.status(200).json({success: true, stats})
+  }
 }

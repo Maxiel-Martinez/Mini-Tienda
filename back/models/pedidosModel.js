@@ -5,7 +5,7 @@ export class PedidosModel {
   static async getAllPedidos() {
     try {
       const [pedidos] = await db.query(
-        `SELECT proveedores.id, nombre, fecha, total, estado
+        `SELECT pedidos.id, nombre, fecha, total, estado
         FROM pedidos
         INNER JOIN proveedores ON pedidos.proveedor_id = proveedores.id`
       )
@@ -62,6 +62,26 @@ export class PedidosModel {
         throw new Error('Pedido no encontrado por ID después de la creación');
       }
       return newPedido
+    } catch (error) {
+      return error
+    }
+  }
+
+  static async getPedidoStats(){
+    try {
+      const [[result]] = await db.query(
+        `
+        SELECT
+          COUNT(CASE WHEN estado = 'pendiente' THEN 1 END) AS pedidos_pendientes,
+          COUNT(CASE WHEN fecha = CURDATE() AND estado = 'recibido' THEN 1 END) AS entregados_hoy,
+          SUM(CASE WHEN DATE(fecha) BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE() THEN total END) AS total_mes
+        FROM variedades_dakota.pedidos;
+        `
+      )
+      if (!result){
+        throw new Error('No se pudieron obtener las estadísticas de pedidos');
+      }
+      return result
     } catch (error) {
       return error
     }
