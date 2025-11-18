@@ -28,6 +28,16 @@ imageInput.addEventListener('change', (e) => {
   showPreview(e.target.files[0]);
 })
 
+function formatearFechaHora(fecha) {
+  const date = new Date(fecha);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${year}/${month}/${day} ${hours}:${minutes}`;
+}
 
 const getAllPedidos = () => apiFetch('/pedidos');
 const getCategoryValues = () =>  apiFetch('/categories')
@@ -71,7 +81,6 @@ function showPreview(file) {
 
 const displayPedidos = async () => {
   const {success, pedidos } = await getAllPedidos();
-  console.log("🚀 ~ displayPedidos ~ pedidos:", pedidos)
   const pedidosTable = document.getElementById('table-pedidos')
 
   if (!success){
@@ -84,13 +93,12 @@ const displayPedidos = async () => {
     <tr>
       <td>${pedido.id}</td>
       <td>${pedido.nombre}</td>
-      <td>${pedido.fecha}</td>
-      <td>8 productos</td>
+      <td>${formatearFechaHora(pedido.fecha)}</td>
       <td class="total-green">$ ${pedido.total}</td>
-      <td><span class="badge badge-pending">${pedido.estado}</span></td>
+      <td><span class="badge ${pedido.estado === "recibido" ? "badge-delivered" : pedido.estado === "pendiente" ? "badge-pending" : "badge-transit"}">${pedido.estado}</span></td>
       <td>
         <button class="btn-action">👁 Ver</button>
-        <button class="btn-recibir">✓ Recibir</button>
+        ${pedido.estado === "recibido" ? '' : '<button class="btn-recibir">✓ Recibir</button>'}
       </td>
     </tr>
     `
