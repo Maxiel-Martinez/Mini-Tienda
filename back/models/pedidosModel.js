@@ -70,6 +70,22 @@ export class PedidosModel {
     }
   }
 
+  static async updatePedidoStatus(pedido_id, newStatus){
+    try {
+      const [updateResult] = await db.query(
+        `UPDATE pedidos
+        SET estado = ?
+        WHERE id = ?`, [newStatus, pedido_id]
+      )
+      if (updateResult.affectedRows === 0) {
+        throw new Error('No se pudo actualizar el estado del pedido');
+      }
+      return { success: true }
+    } catch (error) {
+      return error
+    }
+  }
+
   static async getPedidoStats(){
     try {
       const [[result]] = await db.query(

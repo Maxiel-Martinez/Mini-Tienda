@@ -57,6 +57,19 @@ pedidosTable.addEventListener('click', async (e) => {
     document.getElementById('subtotal').textContent = `$${subtotal}`
     detalleOverlay.classList.add('active')
   }
+
+  if (recibirPedido){
+    const pedidoId = recibirPedido.getAttribute('data-id')
+    const confirmacion = confirm('¿Estás seguro de que deseas marcar este pedido como recibido?')
+    if (!confirmacion) return
+    const {success} = await updatePedidoStatus(pedidoId, 'recibido')
+    if (!success){
+      alert('Error al actualizar el estado del pedido')
+      return
+    }
+    alert('Pedido marcado como recibido exitosamente')
+    location.reload()
+  }
 })
 
 cerrarDetalles.addEventListener('click', () => {
@@ -83,6 +96,11 @@ const getCategoryValues = () =>  apiFetch('/categories')
 const getProveedores = () =>  apiFetch('/proveedores')
 const getpedidosStats = () =>  apiFetch('/pedidos/stats')
 const getpedidoById = (id) => apiFetch(`/pedidos/${id}`)
+const updatePedidoStatus = (id, status) => apiFetch(`/pedidos/${id}/status`, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ estado: status })
+})
 
 pedidosForm.addEventListener('submit', async (e) => {
   e.preventDefault()

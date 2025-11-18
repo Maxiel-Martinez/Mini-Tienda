@@ -44,6 +44,16 @@ export class PedidosController{
     }
   }
 
+  static async updatePedidoStatus (req, res){
+    const { pedido_id } = req.params;
+    const { estado } = req.body;
+    const updatedPedido = await PedidosModel.updatePedidoStatus(pedido_id, estado)
+    if (updatedPedido instanceof Error) {
+      return res.status(500).json({success: false, error: updatedPedido.message })
+    }
+    res.status(200).json({success: true, updatedPedido})
+  }
+
   static async getPedidoStats(req, res){
     const stats = await PedidosModel.getPedidoStats()
     if (stats instanceof Error) {
