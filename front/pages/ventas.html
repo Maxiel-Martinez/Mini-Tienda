@@ -1,79 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/ventas.css">
-    <title>Dashboard de Ventas</title>
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/ventas.css">
+  <title>Dashboard de Ventas</title>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    <div id="sidebar-container"></div>
+  <div id="sidebar-container"></div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="header">
-            <div class="header-left">
-                <h1>Ventas</h1>
-                <p>Registra ventas de productos con diferentes métodos de pago</p>
-            </div>
-            <div class="header-right">
-                <button class="btn-nuevo">
-                    <span style="font-size: 18px;">+</span>
-                    Nueva Venta
-                </button>
-            </div>
-        </div>
-
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-title">Ventas Hoy</div>
-                <div class="card-amount">$0</div>
-                <div class="card-subtitle">0 transacciones</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Efectivo</div>
-                <div class="card-amount">$0</div>
-                <div class="card-subtitle">0% del total</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Transferencias</div>
-                <div class="card-amount">$0</div>
-                <div class="card-subtitle">0% del total</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Créditos Pendientes</div>
-                <div class="card-amount">$0</div>
-                <div class="card-subtitle">Por cobrar</div>
-            </div>
-        </div>
-
-        <div class="table-section">
-            <h2>Historial de Ventas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Total</th>
-                        <th>Método</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Se carga dinámicamente -->
-                </tbody>
-            </table>
-        </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <div class="header-left">
+        <h1>Ventas</h1>
+        <p>Registra ventas de productos con diferentes métodos de pago</p>
+      </div>
+      <div class="header-right">
+        <button class="btn-nuevo">
+          <span style="font-size: 18px;">+</span>
+          Nueva Venta
+        </button>
+      </div>
     </div>
 
-    <script src="../js/ventas.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/sidebar.js"></script>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-title">Ventas Hoy</div>
+        <div class="card-amount">$0</div>
+        <div class="card-subtitle">0 transacciones</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Efectivo</div>
+        <div class="card-amount">$0</div>
+        <div class="card-subtitle">0% del total</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Transferencias</div>
+        <div class="card-amount">$0</div>
+        <div class="card-subtitle">0% del total</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Créditos Pendientes</div>
+        <div class="card-amount">$0</div>
+        <div class="card-subtitle">Por cobrar</div>
+      </div>
+    </div>
+
+    <div class="table-section">
+      <h2>Historial de Ventas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Total</th>
+            <th>Método</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Se carga dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../js/ventas.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/sidebar.js"></script>
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:4000/api';
 
 let ventas = [];
 let clientes = [];
@@ -27,7 +27,7 @@ async function cargarVentas() {
     try {
         const response = await fetch(`${API_URL}/ventas`);
         if (!response.ok) throw new Error('Error al cargar ventas');
-        
+
         const data = await response.json();
         ventas = data.ventas || [];
         renderizarTabla();
@@ -40,12 +40,12 @@ async function cargarEstadisticas() {
     try {
         const response = await fetch(`${API_URL}/ventas/estadisticas`);
         if (!response.ok) throw new Error('Error al cargar estadísticas');
-        
+
         const stats = await response.json();
-        
-        document.querySelector('.card:nth-child(1) .card-amount').textContent = 
+
+        document.querySelector('.card:nth-child(1) .card-amount').textContent =
             '$' + (parseFloat(stats.ventasHoy) || 0).toLocaleString();
-        document.querySelector('.card:nth-child(1) .card-subtitle').textContent = 
+        document.querySelector('.card:nth-child(1) .card-subtitle').textContent =
             (stats.transaccionesHoy || 0) + ' transacciones';
 
         // Métodos de pago
@@ -55,19 +55,19 @@ async function cargarEstadisticas() {
         });
 
         const totalDia = parseFloat(stats.ventasHoy) || 1;
-        
-        document.querySelector('.card:nth-child(2) .card-amount').textContent = 
+
+        document.querySelector('.card:nth-child(2) .card-amount').textContent =
             '$' + (metodosMap['Efectivo'] || 0).toLocaleString();
-        document.querySelector('.card:nth-child(2) .card-subtitle').textContent = 
+        document.querySelector('.card:nth-child(2) .card-subtitle').textContent =
             Math.round((metodosMap['Efectivo'] || 0) / totalDia * 100) + '% del total';
 
         const transferencias = (metodosMap['Nequi'] || 0) + (metodosMap['Bancolombia'] || 0);
-        document.querySelector('.card:nth-child(3) .card-amount').textContent = 
+        document.querySelector('.card:nth-child(3) .card-amount').textContent =
             '$' + transferencias.toLocaleString();
-        document.querySelector('.card:nth-child(3) .card-subtitle').textContent = 
+        document.querySelector('.card:nth-child(3) .card-subtitle').textContent =
             Math.round(transferencias / totalDia * 100) + '% del total';
 
-        document.querySelector('.card:nth-child(4) .card-amount').textContent = 
+        document.querySelector('.card:nth-child(4) .card-amount').textContent =
             '$' + (parseFloat(stats.creditosPendientes) || 0).toLocaleString();
     } catch (error) {
         console.error('Error:', error);
@@ -78,12 +78,12 @@ async function cargarClientes() {
     try {
         const response = await fetch(`${API_URL}/clientes`);
         if (!response.ok) throw new Error('Error al cargar clientes');
-        
+
         const data = await response.json();
         console.log('Clientes recibidos:', data); // Para debug
-        
+
         clientes = data.clientes || data.data || data || [];
-        
+
         console.log('Clientes cargados:', clientes.length);
     } catch (error) {
         console.error('Error cargando clientes:', error);
@@ -94,13 +94,13 @@ async function cargarProductos() {
     try {
         const response = await fetch(`${API_URL}/products`);
         if (!response.ok) throw new Error('Error al cargar productos');
-        
+
         const data = await response.json();
         console.log('Productos recibidos:', data); // Para debug
-        
+
         // Intentar diferentes estructuras de respuesta
         productos = data.products || data.productos || data.data || data || [];
-        
+
         console.log('Productos cargados:', productos.length);
     } catch (error) {
         console.error('Error cargando productos:', error);
@@ -137,7 +137,7 @@ function renderizarTabla() {
         const fecha = new Date(venta.fecha);
         const fechaFormateada = fecha.toLocaleDateString('es-CO');
         const pagada = parseFloat(venta.saldo_restante) === 0;
-        
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>#${venta.id}</td>
@@ -153,7 +153,7 @@ function renderizarTabla() {
 
 function inicializarEventos() {
     document.querySelector('.btn-nuevo').addEventListener('click', abrirModal);
-    
+
     if (!document.getElementById('modalVenta')) {
         crearModal();
     }
@@ -171,7 +171,7 @@ function crearModal() {
                 </div>
                 <div class="modal-body">
                     <form id="formVenta" onsubmit="event.preventDefault(); guardarVenta();">
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="clienteSelect">Cliente (Opcional)</label>
@@ -205,7 +205,7 @@ function crearModal() {
                                     <button type="button" class="btn-agregar" onclick="agregarProducto()">+ Agregar</button>
                                 </div>
                             </div>
-                            
+
                             <div id="listaProductos" class="lista-productos"></div>
                         </div>
 
@@ -228,10 +228,10 @@ function crearModal() {
             </div>
         </div>
     `;
-    
+
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     agregarEstilosModal();
-    
+
     document.getElementById('modalVenta').addEventListener('click', function(e) {
         if (e.target === this) cerrarModal();
     });
@@ -403,7 +403,7 @@ function agregarEstilosModal() {
 function abrirModal() {
     productosSeleccionados = [];
     document.getElementById('formVenta').reset();
-    
+
     // Llenar selects
     const clienteSelect = document.getElementById('clienteSelect');
     clienteSelect.innerHTML = '<option value="">Venta sin cliente</option>';
@@ -577,14 +577,14 @@ async function guardarVenta() {
         }
 
         const result = await response.json();
-        
+
         await Swal.fire({
             icon: 'success',
             title: '¡Venta registrada!',
             text: result.msg || 'La venta se registró exitosamente',
             confirmButtonColor: '#1E90FF'
         });
-        
+
         cerrarModal();
         cargarDatos();
     } catch (error) {
@@ -602,7 +602,7 @@ async function verDetalle(id) {
     try {
         const response = await fetch(`${API_URL}/ventas/${id}`);
         if (!response.ok) throw new Error('Error al cargar detalle');
-        
+
         const data = await response.json();
         const venta = data.venta;
 
@@ -623,9 +623,9 @@ async function verDetalle(id) {
                         <p style="margin: 8px 0;"><strong style="color: #1e40af;">📅 Fecha:</strong> <span style="color: #334155;">${new Date(venta.fecha).toLocaleString('es-CO')}</span></p>
                         <p style="margin: 8px 0;"><strong style="color: #1e40af;">💳 Método de Pago:</strong> <span style="color: #334155;">${venta.metodo_pago_nombre}</span></p>
                     </div>
-                    
+
                     ${productosHTML}
-                    
+
                     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e90ff 100%); padding: 15px; border-radius: 8px; color: white; margin-top: 15px;">
                         <div style="display: flex; justify-content: space-between; margin: 8px 0;">
                             <span style="font-size: 16px;"><strong>💰 Total:</strong></span>

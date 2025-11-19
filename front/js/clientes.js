@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api'; // Ajusta el puerto según tu configuración
+const API_URL = 'http://localhost:4000/api'; // Ajusta el puerto según tu configuración
 
 let clientes = [];
 let editandoId = null;
@@ -12,15 +12,15 @@ window.onload = function() {
 async function cargarClientes() {
     try {
         const response = await fetch(`${API_URL}/clientes`);
-        
+
         const data = await response.json();
         clientes = data.clientes || [];
-        
+
         // Calcular última compra para cada cliente
         await Promise.all(clientes.map(async (cliente) => {
             cliente.ultimaCompra = await obtenerUltimaCompra(cliente.id);
         }));
-        
+
         renderizarTabla();
         actualizarEstadisticas();
     } catch (error) {
@@ -71,10 +71,10 @@ async function guardarCliente() {
         return;
     }
 
-    const clienteData = { 
-        nombre, 
-        telefono, 
-        correo, 
+    const clienteData = {
+        nombre,
+        telefono,
+        correo,
         direccion,
         saldo: 0 // Nuevo cliente sin deuda
     };
@@ -105,7 +105,7 @@ async function guardarCliente() {
         }
 
         const result = await response.json();
-        
+
         Swal.fire({
             icon: 'success',
             title: '¡Éxito!',
@@ -113,7 +113,7 @@ async function guardarCliente() {
             timer: 2000,
             showConfirmButton: false
         });
-        
+
         cerrarModal();
         cargarClientes();
     } catch (error) {
@@ -202,7 +202,7 @@ async function actualizarDeuda(clienteId) {
             timer: 2500,
             showConfirmButton: false
         });
-        
+
         cargarClientes();
     } catch (error) {
         console.error('Error:', error);
@@ -249,7 +249,7 @@ async function eliminarCliente(clienteId) {
             timer: 2000,
             showConfirmButton: false
         });
-        
+
         cargarClientes();
     } catch (error) {
         console.error('Error:', error);

@@ -1,121 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes - Variedades Dakota</title>
-    
-    <link rel="stylesheet" href="../css/clientes.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes - Variedades Dakota</title>
+
+  <link rel="stylesheet" href="../css/clientes.css">
 </head>
 
 <body>
-    
-    <div id="sidebar-container"></div>
 
-    <div class="main-content">
-        <div class="header">
-            <div class="header-left">
-                <h1>Clientes</h1>
-                <p>Gestiona tu base de clientes y sus deudas</p>
-            </div>
-            <div class="header-right">
-                <button class="btn-nuevo" onclick="abrirModal()">
-                    <span style="font-size: 18px;">+</span>
-                    Nuevo Cliente
-                </button>
-            </div>
-        </div>
+  <div id="sidebar-container"></div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Clientes</h3>
-                <div class="stat-value" id="totalClientes">4</div>
-                <div class="stat-subtitle">3 activos</div>
-            </div>
-
-            <div class="stat-card">
-                <h3>Clientes con Deuda</h3>
-                <div class="stat-value" id="clientesConDeuda">3</div>
-                <div class="stat-subtitle">Pendientes de pago</div>
-            </div>
-
-            <div class="stat-card">
-                <h3>Deuda Total</h3>
-                <div class="stat-value" id="deudaTotal">$255,000</div>
-                <div class="stat-subtitle">Por cobrar</div>
-            </div>
-
-            <div class="stat-card">
-                <h3>Compras del Mes</h3>
-                <div class="stat-value">$1,730,000</div>
-                <div class="stat-subtitle">Enero 2024</div>
-            </div>
-        </div>
-
-        <div class="table-section">
-            <h2>Lista de Clientes</h2>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Contacto</th>
-                            <th>Dirección</th>
-                            <th>Deuda</th>
-                            <th>Última Compra</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaClientes">
-                        <!-- Se carga dinámicamente -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="main-content">
+    <div class="header">
+      <div class="header-left">
+        <h1>Clientes</h1>
+        <p>Gestiona tu base de clientes y sus deudas</p>
+      </div>
+      <div class="header-right">
+        <button class="btn-nuevo" onclick="abrirModal()">
+          <span style="font-size: 18px;">+</span>
+          Nuevo Cliente
+        </button>
+      </div>
     </div>
 
-    <!-- Modal Nuevo/Editar Cliente -->
-    <div class="modal" id="modalCliente">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitulo">Nuevo Cliente</h2>
-                <button class="btn-close" onclick="cerrarModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="formCliente">
-                    <input type="hidden" id="clienteId">
-                    
-                    <div class="form-group">
-                        <label for="nombreCompleto">Nombre Completo</label>
-                        <input type="text" id="nombreCompleto" placeholder="Nombre del cliente" required>
-                    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Clientes</h3>
+        <div class="stat-value" id="totalClientes">4</div>
+        <div class="stat-subtitle">3 activos</div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="telefono">Teléfono</label>
-                        <input type="tel" id="telefono" placeholder="300-123-4567" required>
-                    </div>
+      <div class="stat-card">
+        <h3>Clientes con Deuda</h3>
+        <div class="stat-value" id="clientesConDeuda">3</div>
+        <div class="stat-subtitle">Pendientes de pago</div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="cliente@email.com">
-                    </div>
+      <div class="stat-card">
+        <h3>Deuda Total</h3>
+        <div class="stat-value" id="deudaTotal">$255,000</div>
+        <div class="stat-subtitle">Por cobrar</div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="direccion">Dirección</label>
-                        <textarea id="direccion" placeholder="Dirección completa del cliente"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
-                <button class="btn-guardar" id="btnGuardar" onclick="guardarCliente()">Crear Cliente</button>
-            </div>
-        </div>
+      <div class="stat-card">
+        <h3>Compras del Mes</h3>
+        <div class="stat-value">$1,730,000</div>
+        <div class="stat-subtitle">Enero 2024</div>
+      </div>
     </div>
 
+    <div class="table-section">
+      <h2>Lista de Clientes</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Contacto</th>
+              <th>Dirección</th>
+              <th>Deuda</th>
+              <th>Última Compra</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaClientes">
+            <!-- Se carga dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-    <script src="../js/clientes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/sidebar.js"></script>
+  <!-- Modal Nuevo/Editar Cliente -->
+  <div class="modal" id="modalCliente">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitulo">Nuevo Cliente</h2>
+        <button class="btn-close" onclick="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="formCliente">
+          <input type="hidden" id="clienteId">
+
+          <div class="form-group">
+            <label for="nombreCompleto">Nombre Completo</label>
+            <input type="text" id="nombreCompleto" placeholder="Nombre del cliente" required>
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="300-123-4567" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="cliente@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <textarea id="direccion" placeholder="Dirección completa del cliente"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+        <button class="btn-guardar" id="btnGuardar" onclick="guardarCliente()">Crear Cliente</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../js/clientes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/sidebar.js"></script>
 </body>
+
 </html>

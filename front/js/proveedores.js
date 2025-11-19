@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:4000/api';
 
 let proveedores = [];
 let editandoId = null;
@@ -15,15 +15,15 @@ async function cargarProveedores() {
     try {
         const response = await fetch(`${API_URL}/proveedores`);
         if (!response.ok) throw new Error('Error al cargar proveedores');
-        
+
         const data = await response.json();
         proveedores = data.proveedores || [];
-        
+
         // Obtener total de pedidos para cada proveedor
         for (const proveedor of proveedores) {
             proveedor.totalPedidos = await obtenerTotalPedidos(proveedor.id);
         }
-        
+
         renderizarTabla();
     } catch (error) {
         console.error('Error:', error);
@@ -40,7 +40,7 @@ async function obtenerTotalPedidos(proveedorId) {
     try {
         const response = await fetch(`${API_URL}/proveedores/${proveedorId}/pedidos`);
         if (!response.ok) return 0;
-        
+
         const data = await response.json();
         return data.totalPedidos || 0;
     } catch (error) {
@@ -52,9 +52,9 @@ async function cargarEstadisticas() {
     try {
         const response = await fetch(`${API_URL}/proveedores/estadisticas`);
         if (!response.ok) throw new Error('Error al cargar estadísticas');
-        
+
         const stats = await response.json();
-        
+
         document.querySelector('.stat-card:nth-child(1) .stat-card-value').textContent = stats.totalProveedores || 0;
         document.querySelector('.stat-card:nth-child(2) .stat-card-value').textContent = stats.proveedoresActivos || 0;
         document.querySelector('.stat-card:nth-child(4) .stat-card-value').textContent = stats.pedidosMes || 0;
@@ -79,7 +79,7 @@ async function guardarProveedor() {
     }
 
     // Estructura correcta según tu base de datos
-    const proveedorData = { 
+    const proveedorData = {
         nombre: nombre,        // VARCHAR(100) - Nombre de la empresa
         telefono: telefono,    // VARCHAR(20) - Teléfono
         empresa: contacto || null  // VARCHAR(100) - Persona de contacto
@@ -107,7 +107,7 @@ async function guardarProveedor() {
         }
 
         const result = await response.json();
-        
+
         Swal.fire({
             icon: 'success',
             title: '¡Éxito!',
@@ -115,7 +115,7 @@ async function guardarProveedor() {
             timer: 2000,
             showConfirmButton: false
         });
-        
+
         cerrarModal();
         cargarProveedores();
         cargarEstadisticas();
@@ -164,7 +164,7 @@ async function eliminarProveedor(proveedorId) {
             timer: 2000,
             showConfirmButton: false
         });
-        
+
         cargarProveedores();
         cargarEstadisticas();
     } catch (error) {
@@ -191,10 +191,10 @@ function renderizarTabla() {
 
     proveedores.forEach(proveedor => {
         const activo = proveedor.totalPedidos > 0;
-        
+
         // Generar dirección de ejemplo o "Sin dirección"
         const direccion = `Calle 123 #45-67, Bogotá`;
-        
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>
@@ -221,7 +221,7 @@ function renderizarTabla() {
 function inicializarEventos() {
     // Botón nuevo proveedor
     document.querySelector('.btn-nuevo').addEventListener('click', abrirModal);
-    
+
     // Cerrar modal al hacer clic fuera
     document.getElementById('modalProveedor').addEventListener('click', function(e) {
         if (e.target === this) {

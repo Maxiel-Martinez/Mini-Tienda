@@ -65,7 +65,7 @@ if (loginForm) {
     const data = Object.fromEntries(new FormData(loginForm));
 
     try {
-      const response = await fetch("http://localhost:3000/api/users/login", {
+      const response = await fetch("http://localhost:4000/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -122,7 +122,7 @@ if (registerForm) {
     const data = Object.fromEntries(new FormData(registerForm));
 
     try {
-      const response = await fetch("http://localhost:3000/api/users/register", { 
+      const response = await fetch("http://localhost:4000/api/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

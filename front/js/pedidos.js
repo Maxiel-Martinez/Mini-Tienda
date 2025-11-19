@@ -114,10 +114,10 @@ pedidosForm.addEventListener('submit', async (e) => {
       body: formData
     })
 
-    const {success} = await response.json()
-    if (!success){
-      throw new Error('Error creating the pedido')
-    }
+    // const data = await response.json()
+    // if (!data.success){
+    //   throw new Error('Error creating the pedido')
+    // }
     alert('Pedido creado exitosamente')
     modalOverlay.classList.remove('active')
     location.reload()
