@@ -1,53 +1,35 @@
-import React from 'react';
+import { CardsGrid } from '../components/cards/CardsGrid';
 import './Sales.css';
+
+const stats = [
+  { title: "Ventas Hoy", value: "$0", subtitle: "0 transacciones" },
+  { title: "Efectivo", value: "$0", subtitle: "0% del total" },
+  { title: "Transferencias", value: "$0", subtitle: "0% del total" },
+  { title: "Créditos Pendientes", value: "$0", subtitle: "Por cobrar" },
+];
 
 export const Sales = () => {
     return (
         <>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-title">Ventas Hoy</div>
-                    <div class="card-amount">$0</div>
-                    <div class="card-subtitle">0 transacciones</div>
-                </div>
+        <CardsGrid arrayCards={stats} />
+        <div class="table-section">
+            <h2>Historial de Ventas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Total</th>
+                        <th>Método</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                <div class="card">
-                    <div class="card-title">Efectivo</div>
-                    <div class="card-amount">$0</div>
-                    <div class="card-subtitle">0% del total</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">Transferencias</div>
-                    <div class="card-amount">$0</div>
-                    <div class="card-subtitle">0% del total</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">Créditos Pendientes</div>
-                    <div class="card-amount">$0</div>
-                    <div class="card-subtitle">Por cobrar</div>
-                </div>
-            </div>
-
-            <div class="table-section">
-                <h2>Historial de Ventas</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Total</th>
-                            <th>Método</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
         </>
     );
 }
