@@ -1,10 +1,8 @@
-import React from 'react'
 import './ProfileLayout.css'
-import { Outlet } from 'react-router'
+import { Link, Outlet } from 'react-router'
 
 export default function ProfileLayout() {
     return (
-
         <div className="main-content">
             <div className="header">
                 <h1>Panel de Control</h1>
@@ -27,14 +25,14 @@ export default function ProfileLayout() {
                         <p>Sistema de Gestión</p>
                     </div>
 
-                    <div className="menu-item" data-page="dashboard">
+                    <Link to="" className="menu-item" data-page="dashboard">
                         <span className="menu-icon">📊</span>
                         <span>Dashboard</span>
-                    </div>
-                    <div className="menu-item" data-page="ventas">
+                    </Link>
+                    <Link to="sales" className="menu-item" data-page="ventas">
                         <span className="menu-icon">🛒</span>
                         <span>Ventas</span>
-                    </div>
+                    </Link>
                     <div className="menu-item" data-page="pedidos">
                         <span className="menu-icon">📋</span>
                         <span>Pedidos</span>
