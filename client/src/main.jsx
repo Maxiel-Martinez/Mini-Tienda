@@ -1,13 +1,14 @@
 import './index.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 import { AuthLayout } from './pages/auth/AuthLayout.jsx'
 import Login from './pages/auth/login/Login.jsx'
 import { Register } from './pages/auth/register/Register.jsx'
 import { Dashboard } from './pages/Profile/dasboard/Dashboard.jsx'
 import ProfileLayout from './pages/Profile/ProfileLayout.jsx'
 import { Sales } from './pages/Profile/ventas/Sales.jsx'
+import { Clients } from './pages/Profile/clients/Clients.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,7 +21,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="profile" element={<ProfileLayout />}>
           <Route index element={<Dashboard />}></Route>
           <Route path="sales" element={<Sales />}></Route>
+          <Route path='clients' element={<Clients />}></Route>
         </Route>
+        <Route path="*" element={<Navigate to='/' replace />}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>,
