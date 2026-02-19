@@ -6,6 +6,7 @@ import { AuthLayout } from './pages/auth/AuthLayout.jsx'
 import Login from './pages/auth/login/Login.jsx'
 import { Register } from './pages/auth/register/Register.jsx'
 import { Dashboard } from './pages/Profile/dasboard/Dashboard.jsx'
+import ProfileLayout from './pages/Profile/ProfileLayout.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,7 +16,10 @@ createRoot(document.getElementById('root')).render(
           <Route index element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>
         </Route>
-        <Route path="dashboard" element={<Dashboard />}></Route>
+        <Route element={<ProfileLayout />}>
+        
+        </Route>
+
       </Routes>
     </BrowserRouter>
   </StrictMode>,
