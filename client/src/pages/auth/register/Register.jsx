@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import { faEnvelope, faLock, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -21,7 +22,7 @@ export const Register = () =>{
           <FontAwesomeIcon icon={faUserPlus} />
           Registrarse
         </button>
-        <p className="link register-link">¿Ya tienes una cuenta? <a href="#" id="show-login">Inicia Sesión</a></p>
+        <p className="link register-link">¿Ya tienes una cuenta? <Link to="/" id="show-login">Inicia Sesión</Link></p>
     </form>
   )
 }
