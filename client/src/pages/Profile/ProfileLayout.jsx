@@ -37,10 +37,10 @@ export default function ProfileLayout() {
                         <span className="menu-icon">📋</span>
                         <span>Pedidos</span>
                     </div>
-                    <div className="menu-item" data-page="clientes">
+                    <Link to='clients' className="menu-item" data-page="clientes">
                         <span className="menu-icon">👥</span>
                         <span>Clientes</span>
-                    </div>
+                    </Link>
                     <div className="menu-item" data-page="productos">
                         <span className="menu-icon">📦</span>
                         <span>Productos</span>
