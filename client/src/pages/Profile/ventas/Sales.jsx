@@ -1,7 +1,7 @@
 import React from 'react';
-import './ventas.css';
+import './Sales.css';
 
-export const Ventas = () => {
+export const Sales = () => {
     return (
         <>
             <div class="cards-grid">
