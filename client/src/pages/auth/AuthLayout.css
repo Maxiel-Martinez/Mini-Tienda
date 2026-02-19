@@ -76,51 +76,6 @@
     font-weight: 300;
 }
 
-/* .toggle-buttons {
-    display: flex;
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 4px;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.toggle-buttons::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: calc(50% - 4px);
-    height: calc(100% - 8px);
-    background: linear-gradient(135deg, #1E90FF, #00008B);
-    border-radius: 8px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-
-.toggle-buttons.register-active::before {
-    transform: translateX(100%);
-}
-
-.toggle-buttons button {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #666;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 12px 20px;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
-    border-radius: 8px;
-}
-
-.toggle-buttons button.active {
-    color: white;
-} */
-
 .toggle-buttons {
     display: flex;
     background: #f8f9fa;
