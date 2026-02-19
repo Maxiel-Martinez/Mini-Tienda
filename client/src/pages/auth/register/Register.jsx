@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const Register = () =>{
   return (
-    <form id="register-form" className="form active" >
+    <form id="register-form" className="authForm active" >
         <h2>Crear Cuenta</h2>
         <div className="input-group">
           <input type="text" id="register-name" name="nombre_completo" required placeholder="Nombre completo" />

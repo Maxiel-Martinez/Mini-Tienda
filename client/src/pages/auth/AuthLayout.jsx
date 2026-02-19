@@ -9,7 +9,7 @@ export const AuthLayout = () => {
   console.log(location.pathname)
 
   return (
-    <>
+    <div className="section">
       <div className="floating-shapes">
         <div className="shape">
           <FontAwesomeIcon icon={faBagShopping} size="3x" color="#667eea" />
@@ -23,7 +23,7 @@ export const AuthLayout = () => {
       </div>
       <div className="container">
         <div className="store-logo">
-          <FontAwesomeIcon icon={faBagShopping} size="3x" />
+          <FontAwesomeIcon icon={faBagShopping} size="3x" color="white"/>
         </div>
         <h1 className="store-title">Variedades Dakota</h1>
         <p className="store-subtitle">Tu tienda online de confianza</p>
@@ -35,6 +35,6 @@ export const AuthLayout = () => {
         <Outlet />
         </div>
       </div>
-    </>
+    </div>
   )
 }

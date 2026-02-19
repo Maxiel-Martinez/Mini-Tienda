@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Login() {
 
   return (
-    <form id="login-form" className="form active">
+    <form id="login-form" className="authForm active">
         <h2>Iniciar Sesión</h2>
         <div className="input-group">
           <input type="email" id="login-email" name="correo" required placeholder="Correo Electrónico" />
