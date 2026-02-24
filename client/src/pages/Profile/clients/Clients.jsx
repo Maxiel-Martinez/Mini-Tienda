@@ -1,5 +1,6 @@
 import './Clients.css'
 import { CardsGrid } from "../components/cards/CardsGrid"
+import { TitleSection } from '../components/titleSection/TitleSection';
 
 const stats = [
   { title: "Total Clientes", value: "4", subtitle: "3 activos" },
@@ -11,76 +12,65 @@ const stats = [
 export const Clients = () => {
   return (
     <>
-    <div className="header">
-      <div className="header-left">
-        <h1>Clientes</h1>
-        <p>Gestiona tu base de clientes y sus deudas</p>
+      <TitleSection title="Clientes" subtitle="Gestiona tu base de clientes y sus deudas" buttonText="Nuevo Cliente" />
+      <CardsGrid arrayCards={stats} />
+      <div className="table-section">
+        <h2>Lista de Clientes</h2>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Contacto</th>
+                <th>Dirección</th>
+                <th>Deuda</th>
+                <th>Última Compra</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaClientes">
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div className="header-right">
-        <button className="btn-nuevo">
-          <span style={{fontSize: "18px"}}>+</span>
-          Nuevo Cliente
-        </button>
-      </div>
-    </div>
-    <CardsGrid arrayCards={stats} />
-    <div className="table-section">
-      <h2>Lista de Clientes</h2>
-      <div className="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Contacto</th>
-              <th>Dirección</th>
-              <th>Deuda</th>
-              <th>Última Compra</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tablaClientes">
-          </tbody>
-        </table>
-      </div>
-    </div>
 
-    <div className="modal" id="modalCliente">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h2 id="modalTitulo">Nuevo Cliente</h2>
-        <button className="btn-close" onclick="cerrarModal()">&times;</button>
-      </div>
-      <div className="modal-body">
-        <form id="formCliente">
-          <input type="hidden" id="clienteId" />
-
-          <div className="form-group">
-            <label for="nombreCompleto">Nombre Completo</label>
-            <input type="text" id="nombreCompleto" placeholder="Nombre del cliente" required />
+      <div className="modal" id="modalCliente">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2 id="modalTitulo">Nuevo Cliente</h2>
+            <button className="btn-close" onclick="cerrarModal()">&times;</button>
           </div>
+          <div className="modal-body">
+            <form id="formCliente">
+              <input type="hidden" id="clienteId" />
 
-          <div className="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" placeholder="300-123-4567" required />
-          </div>
+              <div className="form-group">
+                <label for="nombreCompleto">Nombre Completo</label>
+                <input type="text" id="nombreCompleto" placeholder="Nombre del cliente" required />
+              </div>
 
-          <div className="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="cliente@email.com" />
-          </div>
+              <div className="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" placeholder="300-123-4567" required />
+              </div>
 
-          <div className="form-group">
-            <label for="direccion">Dirección</label>
-            <textarea id="direccion" placeholder="Dirección completa del cliente"></textarea>
+              <div className="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="cliente@email.com" />
+              </div>
+
+              <div className="form-group">
+                <label for="direccion">Dirección</label>
+                <textarea id="direccion" placeholder="Dirección completa del cliente"></textarea>
+              </div>
+            </form>
           </div>
-        </form>
+          <div className="modal-footer">
+            <button className="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+            <button className="btn-guardar" id="btnGuardar" onclick="guardarCliente()">Crear Cliente</button>
+          </div>
+        </div>
       </div>
-      <div className="modal-footer">
-        <button className="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
-        <button className="btn-guardar" id="btnGuardar" onclick="guardarCliente()">Crear Cliente</button>
-      </div>
-    </div>
-  </div>
     </>
   )
 }

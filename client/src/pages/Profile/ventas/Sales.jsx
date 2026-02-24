@@ -1,4 +1,5 @@
 import { CardsGrid } from '../components/cards/CardsGrid';
+import { TitleSection } from '../components/titleSection/TitleSection';
 import './Sales.css';
 
 const stats = [
@@ -11,8 +12,9 @@ const stats = [
 export const Sales = () => {
     return (
         <>
+        <TitleSection title="Ventas" subtitle="Gestiona tus ventas, métodos de pago y estadísticas" buttonText="Nueva Venta" />
         <CardsGrid arrayCards={stats} />
-        <div class="table-section">
+        <div className="table-section">
             <h2>Historial de Ventas</h2>
             <table>
                 <thead>

@@ -9,25 +9,27 @@ const stats = [
 ];
 
 export const Dashboard = () => {
-    return (
-        <>
-            <div className="dashboard-title">
-                <h2>Dashboard</h2>
-                <p>Resumen general del negocio</p>
-            </div>
-            <CardsGrid arrayCards={stats} />
-            <div className="charts-container">
-                <div className="chart-card">
-                    <div className="chart-title">Ventas y Pedidos - Últimos 6 Meses</div>
-                    <canvas id="lineChart"></canvas>
-                </div>
+  return (
+    <>
+      <div className="title-section">
+        <div className="title-left">
+          <h1>Dashboard</h1>
+          <p>Resumen general del negocio</p>
+        </div>
+      </div>
+      <CardsGrid arrayCards={stats} />
+      <div className="charts-container">
+        <div className="chart-card">
+          <div className="chart-title">Ventas y Pedidos - Últimos 6 Meses</div>
+          <canvas id="lineChart"></canvas>
+        </div>
 
-                <div className="chart-card">
-                    <div className="chart-title">Métodos de Pago</div>
-                    <canvas id="pieChart"></canvas>
-                </div>
-            </div>
-        </>
-    );
+        <div className="chart-card">
+          <div className="chart-title">Métodos de Pago</div>
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
+    </>
+  );
 
 }
