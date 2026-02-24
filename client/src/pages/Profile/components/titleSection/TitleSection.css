@@ -1,0 +1,28 @@
+/* title-section */
+.title-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.title-left {
+  flex: 1;
+}
+
+.title-left h1 {
+  font-size: 38px;
+  color: var(--azul-oscuro);
+  margin-bottom: 5px;
+}
+
+.title-left p {
+  color: #666;
+  font-size: 14px;
+}
+
+.title-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
