@@ -77,7 +77,7 @@
     font-weight: bold;
 }
 
-
+/* sidebar */
 .sidebar {
     width: 240px;
     background: linear-gradient(180deg, var(--azul-oscuro) 0%, #000066 100%);
