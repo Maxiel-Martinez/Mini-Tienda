@@ -1,5 +1,5 @@
-/* Modal */
-.modal {
+/* modelClient */
+.modelClient {
   display: none;
   position: fixed;
   top: 0;
@@ -13,11 +13,11 @@
 }
 
 
-.modal.active {
+.modelClient.active {
   display: flex;
 }
 
-.modal-content {
+.modelClient-content {
   background: white;
   border-radius: 12px;
   width: 90%;
@@ -27,7 +27,7 @@
   position: relative;
 }
 
-.modal-header {
+.modelClient-header {
   padding: 24px 24px 20px;
   border-bottom: 1px solid #e5e7eb;
   display: flex;
@@ -35,7 +35,7 @@
   align-items: center;
 }
 
-.modal-header h2 {
+.modelClient-header h2 {
   margin: 0;
   color: #00008B;
   font-size: 24px;
@@ -59,11 +59,11 @@
   color: #333;
 }
 
-.modal-body {
+.modelClient-body {
   padding: 24px;
 }
 
-/* Continuación del CSS del modal */
+/* Continuación del CSS del modelClient */
 
 .form-group {
   margin-bottom: 20px;
@@ -99,7 +99,7 @@
   min-height: 80px;
 }
 
-.modal-footer {
+.modelClient-footer {
   padding: 20px 24px;
   border-top: 1px solid #e5e7eb;
   display: flex;

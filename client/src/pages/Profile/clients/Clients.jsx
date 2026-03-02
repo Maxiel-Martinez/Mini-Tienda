@@ -34,13 +34,13 @@ export const Clients = () => {
         </div>
       </div>
 
-      <div className="modal" id="modalCliente">
-        <div className="modal-content">
-          <div className="modal-header">
+      <div className="modelClient" id="modalCliente">
+        <div className="modelClient-content">
+          <div className="modelClient-header">
             <h2 id="modalTitulo">Nuevo Cliente</h2>
             <button className="btn-close" onclick="cerrarModal()">&times;</button>
           </div>
-          <div className="modal-body">
+          <div className="modelClient-body">
             <form id="formCliente">
               <input type="hidden" id="clienteId" />
 
@@ -65,7 +65,7 @@ export const Clients = () => {
               </div>
             </form>
           </div>
-          <div className="modal-footer">
+          <div className="modelClient-footer">
             <button className="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
             <button className="btn-guardar" id="btnGuardar" onclick="guardarCliente()">Crear Cliente</button>
           </div>
