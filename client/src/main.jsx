@@ -9,6 +9,8 @@ import { Dashboard } from './pages/Profile/dasboard/Dashboard.jsx'
 import ProfileLayout from './pages/Profile/ProfileLayout.jsx'
 import { Sales } from './pages/Profile/ventas/Sales.jsx'
 import { Clients } from './pages/Profile/clients/Clients.jsx'
+import { Orders } from './pages/Profile/orders/Orders.jsx'
+import { Suplier } from './pages/Profile/supplier/Suplier.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -22,6 +24,8 @@ createRoot(document.getElementById('root')).render(
           <Route index element={<Dashboard />}></Route>
           <Route path="sales" element={<Sales />}></Route>
           <Route path='clients' element={<Clients />}></Route>
+          <Route path='orders' element={<Orders />}></Route>
+          <Route path='supplier' element={<Suplier />}></Route>
         </Route>
         <Route path="*" element={<Navigate to='/' replace />}></Route>
       </Routes>
