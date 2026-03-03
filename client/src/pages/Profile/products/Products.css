@@ -1,0 +1,79 @@
+/* Split Layout */
+.modal-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.modal-left,
+.modal-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-left {
+  border-right: 1px solid #e5e7eb;
+  padding-right: 24px;
+}
+
+.modal-right {
+  padding-left: 24px;
+}
+
+.btn-submit {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  background: #2563eb;
+  color: white;
+  width: 100%;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.image-upload {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #f9fafb;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+  }
+
+  svg {
+    color: #9ca3af;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #6b7280;
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
