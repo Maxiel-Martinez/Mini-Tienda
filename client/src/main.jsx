@@ -11,6 +11,7 @@ import { Sales } from './pages/Profile/ventas/Sales.jsx'
 import { Clients } from './pages/Profile/clients/Clients.jsx'
 import { Orders } from './pages/Profile/orders/Orders.jsx'
 import { Suplier } from './pages/Profile/supplier/Suplier.jsx'
+import { Products } from './pages/Profile/products/Products.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="sales" element={<Sales />}></Route>
           <Route path='clients' element={<Clients />}></Route>
           <Route path='orders' element={<Orders />}></Route>
+          <Route path='products' element={<Products />}></Route>
           <Route path='supplier' element={<Suplier />}></Route>
         </Route>
         <Route path="*" element={<Navigate to='/' replace />}></Route>
