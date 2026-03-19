@@ -5,3 +5,4 @@ export const userRouter = Router()
 
 userRouter.post('/login', UserController.loginUser)
 userRouter.post('/register', UserController.createUser)
+userRouter.post('/logout', UserController.logoutUser)

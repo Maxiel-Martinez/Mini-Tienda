@@ -18,6 +18,30 @@ export class UserController {
     if (response instanceof Error) {
       return res.status(401).json({succes: false, msg: response.message });
     }
-    res.status(200).json({succes: true, msg: "Login exitoso ✅", user: response });
+    req.session.regenerate(async (err)=>{
+      if (err) {
+        return res.status(500).json({succes: false, msg: "Error al generar la sesión" });
+      }
+      req.session.user = response
+      req.session.createdAt = Date.now()
+
+      req.session.save((err) => {
+        if (err) {
+          return res.status(500).json({succes: false, msg: "Error al guardar la sesión" });
+        }
+        return res.status(200).json({succes: true, msg: "Login exitoso ✅", user: req.session.user });
+      })
+
+    })
+  }
+
+  static async logoutUser(req, res) {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({succes: false, msg: "Error al cerrar la sesión" });
+      }
+      res.clearCookie(process.env.SESSION_NAME);
+      return res.status(200).json({succes: true, msg: "Logout exitoso ✅" });
+    })
   }
 }
