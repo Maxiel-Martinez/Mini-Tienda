@@ -4,7 +4,7 @@ import db from '../config/db.js';
 export class User {
   static async create({ nombre_completo, correo, contrasena }){
     try {
-      const hashedPassword = await bcrypt.hash(contrasena, 10);
+      const hashedPassword = await bcrypt.hash(contrasena, 12);
 
       const emailExists = await this.checkEmailExists(correo);
       if (emailExists) {
@@ -30,15 +30,15 @@ export class User {
 
   static async login({ correo, contrasena }){
     try {
-      const [[user]] = await db.query("SELECT id, nombre_completo, correo, contrasena, rol_id FROM usuarios WHERE correo = ?", [correo]);
+      const [[user]] = await db.query("SELECT id, nombre_completo, correo, contrasena_hash, activo FROM usuarios WHERE correo = ?", [correo]);
       if (!user) {
         throw new Error('Usuario no encontrado');
       }
-      const passwordMatch = await bcrypt.compare(contrasena, user.contrasena);
+      const passwordMatch = await bcrypt.compare(contrasena, user.contrasena_hash);
       if (!passwordMatch) {
         throw new Error('Contraseña incorrecta');
       }
-      delete user.contrasena
+      delete user.contrasena_hash
       return user
     } catch (error) {
       return error;
