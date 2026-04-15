@@ -2,6 +2,7 @@ import session from "express-session"
 import MySQLStoreFactory from "express-mysql-session"
 
 const MySQLStore = MySQLStoreFactory(session)
+export const SESSION_TTL_MS = 15 * 60 * 1000; // 15 minutos
 
 export const sessionStore = new MySQLStore({
   host: process.env.DB_HOST,
@@ -9,7 +10,7 @@ export const sessionStore = new MySQLStore({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   clearExpired: true,
-  checkExpirationInterval: 15 * 60 * 1000, // 15 minutos
-  expiration: 24 * 60 * 60 * 1000, // 24 horas
+  checkExpirationInterval: SESSION_TTL_MS,
+  expiration: SESSION_TTL_MS,
   createDatabaseTable: true
 })
