@@ -6,7 +6,6 @@ import './AuthLayout.css'
 
 export const AuthLayout = () => {
   const location = useLocation()
-  console.log(location.pathname)
 
   return (
     <div className="section">
@@ -28,9 +27,8 @@ export const AuthLayout = () => {
         <h1 className="store-title">Variedades Dakota</h1>
         <p className="store-subtitle">Tu tienda online de confianza</p>
         <div className="form-container">
-          <div className={`toggle-buttons ${location.pathname === '/register' ? 'register-active' : ''}`}>
-            <Link to="/" id="login-tab" className={`buton ${location.pathname === '/' ? 'active' : ''}`}>Login</Link>
-            <Link to="/register" id="register-tab" className={`buton ${location.pathname === '/register' ? 'active' : ''}`}>Registro</Link>
+          <div className="toggle-buttons single-tab">
+            <Link to="/" id="login-tab" className="buton active">Login</Link>
           </div>
         <Outlet />
         </div>
