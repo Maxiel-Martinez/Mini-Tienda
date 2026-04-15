@@ -142,12 +142,17 @@
 
 .menu-item.logout {
   margin-top: auto;
-  color: #e63946;
-  font-weight: bold;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: white;
+  font: inherit;
+  font-weight: 500;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  cursor: pointer;
+  border-left: 3px solid transparent;
 }
 
 .menu-item.logout:hover {
-  background-color: rgba(230, 57, 70, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: var(--azul-claro);
 }

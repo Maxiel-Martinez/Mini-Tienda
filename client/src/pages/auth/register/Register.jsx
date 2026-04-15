@@ -3,8 +3,12 @@ import { faEnvelope, faLock, faUser, faUserPlus } from "@fortawesome/free-solid-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const Register = () =>{
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <form id="register-form" className="authForm active" >
+    <form id="register-form" className="authForm active" onSubmit={handleSubmit}>
         <h2>Crear Cuenta</h2>
         <div className="input-group">
           <input type="text" id="register-name" name="nombre_completo" required placeholder="Nombre completo" />
@@ -22,6 +26,7 @@ export const Register = () =>{
           <FontAwesomeIcon icon={faUserPlus} />
           Registrarse
         </button>
+        <p className="link" role="status">Registro no disponible: el backend actual no expone `/api/users/register`.</p>
         <p className="link register-link">¿Ya tienes una cuenta? <Link to="/" id="show-login">Inicia Sesión</Link></p>
     </form>
   )

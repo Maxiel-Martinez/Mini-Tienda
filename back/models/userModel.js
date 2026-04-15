@@ -2,47 +2,45 @@ import bcrypt from 'bcryptjs';
 import db from '../config/db.js';
 
 export class User {
-  static async create({ nombre_completo, correo, contrasena }){
-    try {
-      const hashedPassword = await bcrypt.hash(contrasena, 12);
-
-      const emailExists = await this.checkEmailExists(correo);
-      if (emailExists) {
-        throw new Error('El correo ya está registrado');
-      }
-
-      const rol_id = 2;
-      const [result] = await db.query(
-        "INSERT INTO usuarios (nombre_completo, correo, contrasena, rol_id) VALUES (?, ?, ?, ?)",
-        [nombre_completo, correo, hashedPassword, rol_id]
-      );
-
-      const [[newUser]] = await db.query("SELECT id, nombre_completo, correo FROM usuarios WHERE id = ?", [result.insertId]);
-      if (!newUser) {
-        throw new Error('Error al crear el usuario');
-      }
-
-      return newUser;
-    } catch (error) {
-      return error;
-    }
-  }
-
   static async login({ correo, contrasena }){
-    try {
-      const [[user]] = await db.query("SELECT id, nombre_completo, correo, contrasena_hash, activo FROM usuarios WHERE correo = ?", [correo]);
-      if (!user) {
-        throw new Error('Usuario no encontrado');
-      }
-      const passwordMatch = await bcrypt.compare(contrasena, user.contrasena_hash);
-      if (!passwordMatch) {
-        throw new Error('Contraseña incorrecta');
-      }
-      delete user.contrasena_hash
-      return user
-    } catch (error) {
-      return error;
+    const [[user]] = await db.query(
+      "SELECT id, nombre_completo, correo, contrasena_hash, activo FROM usuarios WHERE correo = ? LIMIT 1",
+      [correo]
+    );
+
+    if (!user) {
+      const error = new Error('Credenciales inválidas');
+      error.status = 401;
+      throw error;
     }
+
+    if (!user.activo) {
+      const error = new Error('Usuario inactivo');
+      error.status = 403;
+      throw error;
+    }
+
+    const passwordMatch = await bcrypt.compare(contrasena, user.contrasena_hash);
+    if (!passwordMatch) {
+      const error = new Error('Credenciales inválidas');
+      error.status = 401;
+      throw error;
+    }
+
+    // Si la columna no existe, no bloqueamos el login.
+    try {
+      await db.query("UPDATE usuarios SET ultimo_login = NOW() WHERE id = ?", [user.id]);
+    } catch (error) {
+      if (error?.code !== 'ER_BAD_FIELD_ERROR') {
+        throw error;
+      }
+    }
+
+    return {
+      id: user.id,
+      nombre_completo: user.nombre_completo,
+      correo: user.correo
+    };
   }
 
   static async checkEmailExists(email) {
