@@ -10,27 +10,43 @@ import cors from "cors"
 import { pedidosRouter } from "./routes/pedidosRoutes.js";
 import session from "express-session";
 import { requiresAuth } from "./middlewares/auth.js";
-import { sessionStore } from "./util/sessionStore.js";
+import { SESSION_TTL_MS, sessionStore } from "./util/sessionStore.js";
+loadEnvFile('./.env');
 
 loadEnvFile();
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
+const isProduction = process.env.NODE_ENV === "production";
+const sessionName = process.env.SESSION_NAME || "sid";
+const sessionSameSite = process.env.SESSION_SAMESITE || "lax";
+const frontendOrigin = process.env.FRONTEND_ORIGIN;
 
 // Middleware para JSON
-app.use(cors());
+if (frontendOrigin) {
+  app.use(cors({
+    origin: frontendOrigin,
+    credentials: true
+  }));
+}
 app.use(json());
 app.use(urlencoded({ extended: true }));
+
+if (isProduction) {
+  app.set("trust proxy", 1);
+}
+
 app.use(session({
-  name: process.env.SESSION_NAME,
+  name: sessionName,
   secret: process.env.SESSION_SECRET,
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 15 * 60 * 1000, // 15 minutos
+    secure: isProduction,
+    sameSite: sessionSameSite,
+    maxAge: SESSION_TTL_MS,
     path: '/',
   }
 }))
