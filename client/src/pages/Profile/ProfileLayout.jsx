@@ -1,7 +1,16 @@
 import './ProfileLayout.css'
-import { Link, Outlet } from 'react-router'
+import { Link, Outlet, useNavigate } from 'react-router'
+import { useUserSession } from '../../providers/userContext/useUserSession'
 
 export default function ProfileLayout() {
+    const navigate = useNavigate()
+    const { logout, user } = useUserSession()
+
+    const handleLogout = async () => {
+        await logout()
+        navigate('/', { replace: true })
+    }
+
     return (
         <div className="main-content">
             <div className="header">
@@ -14,7 +23,9 @@ export default function ProfileLayout() {
                         <span className="badge">3</span>
                     </div>
                     <div className="user-avatar" id="user-avatar"></div>
-                    <span id="user-role" style={{ color: "#333", fontWeight: 500 }}></span>
+                    <span id="user-role" style={{ color: "#333", fontWeight: 500 }}>
+                        {user?.nombre_completo ?? user?.name ?? user?.correo ?? user?.email ?? ''}
+                    </span>
                 </div>
             </div>
 
@@ -50,10 +61,15 @@ export default function ProfileLayout() {
                         <span>Proveedores</span>
                     </Link>
 
-                    <div className="menu-item logout" id="logout-btn">
+                    <button
+                        className="menu-item logout"
+                        id="logout-btn"
+                        type="button"
+                        onClick={handleLogout}
+                    >
                         <span className="menu-icon">🚪</span>
                         <span>Cerrar sesión</span>
-                    </div>
+                    </button>
                 </div>
             </div>
             <div className='profile'>
