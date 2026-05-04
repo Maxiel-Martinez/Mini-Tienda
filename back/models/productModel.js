@@ -8,9 +8,7 @@ export class Product {
         FROM productos
         INNER JOIN categorias ON productos.categoria_id = categorias.categoria_id
         `);
-      if (products.length === 0) {
-        throw new Error('No se pudieron obtener los productos');
-      }
+     
       return products;
     } catch (error) {
       return error;

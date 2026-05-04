@@ -9,9 +9,7 @@ export class PedidosModel {
         FROM pedidos
         INNER JOIN proveedores ON pedidos.proveedor_id = proveedores.id`
       )
-      if (pedidos.length === 0) {
-        throw new Error('No hay pedidos en este momento');
-      }
+
       return pedidos
     } catch (error) {
       return error

@@ -7,7 +7,7 @@ export class PedidosController{
     if (pedidos instanceof Error) {
       return res.status(404).json({success: false, error: pedidos.message });
     }
-    res.status(200).json({success: true, pedidos});
+   res.status(200).json({ msg: "Lista de pedidos ✅", pedidos });
   }
 
   static async getPedidoById(req, res) {
