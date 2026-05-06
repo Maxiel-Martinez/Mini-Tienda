@@ -51,7 +51,6 @@ export class Venta {
 
       return newVenta;
     } catch (error) {
-      console.error('Error en create venta:', error);
       return error;
     }
   }

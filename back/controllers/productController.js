@@ -7,7 +7,7 @@ export class ProductController {
     if (products instanceof Error) {
       return res.status(500).json({ error: products.message });
     }
-    res.status(200).json({products});
+    res.status(200).json({ msg: "Lista de productos ✅", products });
   }
   static async getProductById(req, res) {
     const { product_id } = req.params;
