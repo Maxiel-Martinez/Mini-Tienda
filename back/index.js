@@ -6,10 +6,10 @@ import { productRouter } from "./routes/productRoutes.js";
 import clienteRoutes from "./routes/clienteRoutes.js";
 import proveedorRoutes from "./routes/proveedorRoutes.js";
 import ventaRoutes from "./routes/ventaRoutes.js";
-import cors from "cors"
 import { pedidosRouter } from "./routes/pedidosRoutes.js";
 import session from "express-session";
 import { requiresAuth } from "./middlewares/auth.js";
+import { corsMiddleware } from "./middlewares/cors.middleware.js";
 import { SESSION_TTL_MS, sessionStore } from "./util/sessionStore.js";
 loadEnvFile('./.env');
 
@@ -20,15 +20,9 @@ const PORT = process.env.PORT ?? 3000;
 const isProduction = process.env.NODE_ENV === "production";
 const sessionName = process.env.SESSION_NAME || "sid";
 const sessionSameSite = process.env.SESSION_SAMESITE || "lax";
-const frontendOrigin = process.env.FRONTEND_ORIGIN;
 
 // Middleware para JSON
-if (frontendOrigin) {
-  app.use(cors({
-    origin: frontendOrigin,
-    credentials: true
-  }));
-}
+app.use(corsMiddleware);
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
