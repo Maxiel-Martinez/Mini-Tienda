@@ -86,6 +86,34 @@
   color: #f44336;
 }
 
+.stat-value.accent-dark-blue {
+  color: var(--azul-oscuro);
+}
+
+.stat-value.accent-medium-blue {
+  color: var(--azul-medio);
+}
+
+.stat-value.accent-light-blue {
+  color: #2f7ed8;
+}
+
+.stat-value.accent-green {
+  color: #4caf50;
+}
+
+.stat-card.theme-dark-blue {
+  border-top-color: var(--azul-oscuro);
+}
+
+.stat-card.theme-medium-blue {
+  border-top-color: var(--azul-medio);
+}
+
+.stat-card.theme-light-blue {
+  border-top-color: var(--azul-claro);
+}
+
 .stat-card:nth-child(1) .stat-value {
   color: var(--azul-medio);
 }

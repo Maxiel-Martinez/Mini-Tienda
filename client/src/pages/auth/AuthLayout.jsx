@@ -1,12 +1,9 @@
 import { Link, Outlet } from "react-router"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBagShopping, faCartShopping, faShop } from '@fortawesome/free-solid-svg-icons'
-import {useLocation} from 'react-router'
 import './AuthLayout.css'
 
 export const AuthLayout = () => {
-  const location = useLocation()
-
   return (
     <div className="section">
       <div className="floating-shapes">
