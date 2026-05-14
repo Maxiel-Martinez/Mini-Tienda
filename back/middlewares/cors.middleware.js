@@ -4,7 +4,8 @@ export const ACEPTED_ORIGINS = [
   "http://localhost:5173",
   "http://127.0.0.1:5173",
   "https://mini-tienda-eight.vercel.app/",
-  "https://d3sixnrgohgozq.cloudfront.net/"
+  "https://d3sixnrgohgozq.cloudfront.net/",
+  "https://main.d3dpqpg64evgoa.amplifyapp.com/"
 ]
 
 export const corsMiddleware = cors({
