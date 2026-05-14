@@ -3,7 +3,8 @@ import cors from "cors"
 export const ACEPTED_ORIGINS = [
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-  "https://mini-tienda-eight.vercel.app/"
+  "https://mini-tienda-eight.vercel.app/",
+  "https://d3sixnrgohgozq.cloudfront.net/"
 ]
 
 export const corsMiddleware = cors({
